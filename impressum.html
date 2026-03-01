@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Impressum — AI Workforce</title>
+    <style>
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+        :root {
+            --primary: #1a1a2e; --accent: #00d4ff; --text: #e0e0e0;
+            --text-muted: #8892a4; --text-heading: #ffffff; --surface: #1e1e3a;
+            --border: rgba(255, 255, 255, 0.06);
+        }
+        html { scroll-behavior: smooth; font-size: 16px; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background-color: var(--primary); color: var(--text); line-height: 1.7;
+        }
+        .nav {
+            position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+            background: rgba(26, 26, 46, 0.95); backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border); padding: 0 2rem; height: 64px;
+            display: flex; align-items: center; justify-content: space-between;
+        }
+        .nav-logo { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+        .nav-logo-text { font-size: 1.1rem; font-weight: 700; color: var(--text-heading); }
+        .nav-logo-text span { color: var(--accent); }
+        .nav-back { color: var(--accent); text-decoration: none; font-size: 0.9rem; }
+        .nav-back:hover { text-decoration: underline; }
+        .container { max-width: 800px; margin: 0 auto; padding: 120px 2rem 80px; }
+        h1 { color: var(--text-heading); font-size: 2rem; margin-bottom: 0.5rem; }
+        .subtitle { color: var(--text-muted); margin-bottom: 3rem; }
+        h2 { color: var(--text-heading); font-size: 1.3rem; margin: 2.5rem 0 1rem; }
+        p, li { color: var(--text); margin-bottom: 0.8rem; }
+        ul { padding-left: 1.5rem; }
+        a { color: var(--accent); }
+        .placeholder {
+            background: rgba(0, 212, 255, 0.08); border: 1px dashed rgba(0, 212, 255, 0.3);
+            border-radius: 8px; padding: 12px 16px; color: var(--accent); font-style: italic;
+            margin-bottom: 0.8rem;
+        }
+        .footer-mini {
+            text-align: center; padding: 2rem; color: var(--text-muted); font-size: 0.85rem;
+            border-top: 1px solid var(--border); margin-top: 4rem;
+        }
+        .footer-mini a { color: var(--text-muted); text-decoration: none; margin: 0 1rem; }
+        .footer-mini a:hover { color: var(--accent); }
+    </style>
+</head>
+<body>
+    <nav class="nav">
+        <a href="index.html" class="nav-logo">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+                <circle cx="12" cy="12" r="10" stroke="white" stroke-width="0.7" opacity="0.2"/>
+                <circle cx="12" cy="12" r="6" stroke="white" stroke-width="0.7" opacity="0.35"/>
+                <circle cx="12" cy="12" r="3.2" fill="white"/>
+                <g>
+                    <circle cx="12" cy="3" r="2" fill="white"/>
+                    <circle cx="19.8" cy="16.5" r="2" fill="white"/>
+                    <circle cx="4.2" cy="16.5" r="2" fill="white"/>
+                    <animateTransform attributeName="transform" type="rotate" from="0 12 12" to="360 12 12" dur="12s" repeatCount="indefinite"/>
+                </g>
+            </svg>
+            <span class="nav-logo-text">AI <span>Workforce</span></span>
+        </a>
+        <a href="index.html" class="nav-back">&larr; Zurück zur Startseite</a>
+    </nav>
+
+    <div class="container">
+        <h1>Impressum</h1>
+        <p class="subtitle">Angaben gemäss Schweizer Recht (Art. 3 UWG)</p>
+
+        <h2>Betreiber der Website</h2>
+        <p>AI Workforce<br>Einzelunternehmen</p>
+        <div class="placeholder">[ADRESSE — wird nach Einrichtung eines Postfachs / Virtual Office ergänzt]</div>
+
+        <h2>Kontakt</h2>
+        <p>
+            E-Mail: info@ai-agents.li<br>
+            <span class="placeholder">[TELEFON — wird ergänzt]</span>
+        </p>
+
+        <h2>Verantwortlich für den Inhalt</h2>
+        <div class="placeholder">[NAME — Vor- und Nachname des Inhabers]</div>
+
+        <h2>Haftungsausschluss</h2>
+        <p>Die Inhalte dieser Website wurden mit grösster Sorgfalt erstellt. Für die Richtigkeit, Vollständigkeit und Aktualität der Inhalte können wir jedoch keine Gewähr übernehmen.</p>
+        <p>Als Diensteanbieter sind wir für eigene Inhalte auf diesen Seiten nach den allgemeinen Gesetzen verantwortlich. Wir sind jedoch nicht verpflichtet, übermittelte oder gespeicherte fremde Informationen zu überwachen.</p>
+
+        <h2>Urheberrecht</h2>
+        <p>Die durch den Betreiber dieser Website erstellten Inhalte und Werke unterliegen dem Schweizer Urheberrecht. Die Vervielfältigung, Bearbeitung, Verbreitung und jede Art der Verwertung ausserhalb der Grenzen des Urheberrechts bedürfen der schriftlichen Zustimmung des Autors.</p>
+
+        <h2>Links zu externen Websites</h2>
+        <p>Unsere Website enthält Links zu externen Websites Dritter, auf deren Inhalte wir keinen Einfluss haben. Für die Inhalte der verlinkten Seiten ist stets der jeweilige Anbieter verantwortlich. Die verlinkten Seiten wurden zum Zeitpunkt der Verlinkung auf mögliche Rechtsverstösse überprüft, rechtswidrige Inhalte waren nicht erkennbar.</p>
+
+        <div class="footer-mini">
+            <p>&copy; 2026 AI Workforce. Alle Rechte vorbehalten.</p>
+            <p>
+                <a href="datenschutz.html">Datenschutz</a>
+                <a href="impressum.html">Impressum</a>
+                <a href="index.html">Startseite</a>
+            </p>
+        </div>
+    </div>
+</body>
+</html>
