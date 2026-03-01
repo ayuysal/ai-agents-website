@@ -1,0 +1,2342 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="AI Workforce - Intelligente AI-Agent-Teams für Schweizer Unternehmen. Automatisieren Sie Ihre Geschäftsprozesse mit massgeschneiderten KI-Agenten. 24/7 verfügbar, skalierbar, kosteneffizient.">
+    <meta name="keywords" content="AI Agents, KI Workforce, Automatisierung, Schweiz, KMU, künstliche Intelligenz, AI-Teams">
+    <meta name="author" content="AI Workforce">
+    <meta property="og:title" content="AI Workforce — Ihr digitales Team, das nie schläft">
+    <meta property="og:description" content="Massgeschneiderte AI-Agent-Teams für Schweizer Unternehmen. Bis zu 98% Kosteneinsparung gegenüber traditionellen Teams.">
+    <meta property="og:type" content="website">
+    <meta name="twitter:card" content="summary_large_image">
+    <title>AI Workforce — Intelligente AI-Agent-Teams für Ihr Unternehmen</title>
+
+    <style>
+        /* ============================================================
+           RESET & BASE
+           ============================================================ */
+        *, *::before, *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #1a1a2e;
+            --primary-light: #16213e;
+            --primary-dark: #0f0f1e;
+            --accent: #00d4ff;
+            --accent-glow: rgba(0, 212, 255, 0.15);
+            --accent-hover: #00b8db;
+            --text: #e0e0e0;
+            --text-muted: #8892a4;
+            --text-heading: #ffffff;
+            --surface: #1e1e3a;
+            --surface-light: #252547;
+            --border: rgba(255, 255, 255, 0.06);
+            --gradient-accent: linear-gradient(135deg, #00d4ff 0%, #0090ff 100%);
+            --gradient-hero: linear-gradient(160deg, #1a1a2e 0%, #16213e 40%, #0f3460 100%);
+            --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.2);
+            --shadow-md: 0 8px 32px rgba(0, 0, 0, 0.3);
+            --shadow-lg: 0 16px 64px rgba(0, 0, 0, 0.4);
+            --shadow-glow: 0 0 40px rgba(0, 212, 255, 0.1);
+            --radius: 12px;
+            --radius-lg: 20px;
+            --transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        html {
+            scroll-behavior: smooth;
+            font-size: 16px;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background-color: var(--primary);
+            color: var(--text);
+            line-height: 1.7;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        /* ============================================================
+           TYPOGRAPHY
+           ============================================================ */
+        h1, h2, h3, h4 {
+            color: var(--text-heading);
+            font-weight: 700;
+            line-height: 1.2;
+        }
+
+        h1 { font-size: clamp(2.2rem, 5vw, 3.6rem); }
+        h2 { font-size: clamp(1.8rem, 3.5vw, 2.6rem); }
+        h3 { font-size: clamp(1.1rem, 2vw, 1.35rem); }
+
+        p { color: var(--text); }
+
+        a {
+            color: var(--accent);
+            text-decoration: none;
+            transition: color var(--transition);
+        }
+
+        a:hover { color: var(--accent-hover); }
+
+        /* ============================================================
+           LAYOUT UTILITIES
+           ============================================================ */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        .section {
+            padding: 100px 0;
+        }
+
+        .section-label {
+            display: inline-block;
+            font-size: 0.8rem;
+            font-weight: 600;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 12px;
+        }
+
+        .section-title {
+            margin-bottom: 20px;
+        }
+
+        .section-subtitle {
+            font-size: 1.1rem;
+            color: var(--text-muted);
+            max-width: 640px;
+            margin: 0 auto 60px;
+        }
+
+        .text-center { text-align: center; }
+
+        /* ============================================================
+           BUTTONS
+           ============================================================ */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            padding: 16px 36px;
+            border: none;
+            border-radius: 50px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all var(--transition);
+            text-decoration: none;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-primary {
+            background: var(--gradient-accent);
+            color: #fff;
+            box-shadow: 0 4px 20px rgba(0, 212, 255, 0.3);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 32px rgba(0, 212, 255, 0.45);
+            color: #fff;
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--accent);
+            border: 2px solid rgba(0, 212, 255, 0.4);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(0, 212, 255, 0.08);
+            border-color: var(--accent);
+            color: var(--accent);
+            transform: translateY(-2px);
+        }
+
+        .btn-sm {
+            padding: 12px 28px;
+            font-size: 0.9rem;
+        }
+
+        /* ============================================================
+           NAVIGATION
+           ============================================================ */
+        .nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            padding: 16px 0;
+            transition: all var(--transition);
+            background: transparent;
+        }
+
+        .nav.scrolled {
+            background: rgba(26, 26, 46, 0.92);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border);
+            padding: 10px 0;
+        }
+
+        .nav .container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .nav-logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.35rem;
+            font-weight: 700;
+            color: var(--text-heading);
+            text-decoration: none;
+        }
+
+        .nav-logo-icon {
+            width: 36px;
+            height: 36px;
+            background: var(--gradient-accent);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.1rem;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 36px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            font-weight: 500;
+            transition: color var(--transition);
+            text-decoration: none;
+        }
+
+        .nav-links a:hover {
+            color: var(--text-heading);
+        }
+
+        .nav-toggle {
+            display: none;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 8px;
+        }
+
+        .nav-toggle span {
+            display: block;
+            width: 24px;
+            height: 2px;
+            background: var(--text-heading);
+            margin: 6px 0;
+            transition: all var(--transition);
+            border-radius: 2px;
+        }
+
+        /* ============================================================
+           HERO SECTION
+           ============================================================ */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            background: var(--gradient-hero);
+            position: relative;
+            overflow: hidden;
+            padding-top: 80px;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -20%;
+            width: 800px;
+            height: 800px;
+            background: radial-gradient(circle, rgba(0, 212, 255, 0.06) 0%, transparent 70%);
+            border-radius: 50%;
+            pointer-events: none;
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            bottom: -30%;
+            left: -10%;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(0, 144, 255, 0.04) 0%, transparent 70%);
+            border-radius: 50%;
+            pointer-events: none;
+        }
+
+        .hero .container {
+            position: relative;
+            z-index: 2;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .hero-content {
+            max-width: 600px;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 18px;
+            background: var(--accent-glow);
+            border: 1px solid rgba(0, 212, 255, 0.2);
+            border-radius: 50px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: var(--accent);
+            margin-bottom: 28px;
+        }
+
+        .hero-badge-dot {
+            width: 8px;
+            height: 8px;
+            background: var(--accent);
+            border-radius: 50%;
+            animation: pulse-dot 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse-dot {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.4; }
+        }
+
+        .hero h1 {
+            margin-bottom: 24px;
+        }
+
+        .hero h1 .highlight {
+            background: var(--gradient-accent);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-description {
+            font-size: 1.15rem;
+            color: var(--text-muted);
+            margin-bottom: 40px;
+            line-height: 1.8;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 16px;
+            margin-bottom: 48px;
+            flex-wrap: wrap;
+        }
+
+        .hero-stats {
+            display: flex;
+            gap: 40px;
+        }
+
+        .hero-stat {
+            text-align: left;
+        }
+
+        .hero-stat-value {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--accent);
+            line-height: 1.2;
+        }
+
+        .hero-stat-label {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            margin-top: 4px;
+        }
+
+        /* Hero Visual */
+        .hero-visual {
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .hero-graphic {
+            width: 100%;
+            max-width: 480px;
+            aspect-ratio: 1;
+            position: relative;
+        }
+
+        .hero-orb {
+            position: absolute;
+            border-radius: 50%;
+            border: 1px solid rgba(0, 212, 255, 0.15);
+            animation: orbit-rotate 20s linear infinite;
+        }
+
+        .hero-orb-1 {
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+        }
+
+        .hero-orb-2 {
+            width: 75%;
+            height: 75%;
+            top: 12.5%;
+            left: 12.5%;
+            animation-duration: 15s;
+            animation-direction: reverse;
+        }
+
+        .hero-orb-3 {
+            width: 50%;
+            height: 50%;
+            top: 25%;
+            left: 25%;
+            animation-duration: 10s;
+        }
+
+        @keyframes orbit-rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .hero-center-icon {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 100px;
+            height: 100px;
+            background: var(--gradient-accent);
+            border-radius: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.4rem;
+            box-shadow: 0 0 60px rgba(0, 212, 255, 0.3);
+            z-index: 2;
+            animation: pulse-glow 3s ease-in-out infinite;
+        }
+
+        @keyframes pulse-glow {
+            0%, 100% { box-shadow: 0 0 60px rgba(0, 212, 255, 0.3); }
+            50% { box-shadow: 0 0 90px rgba(0, 212, 255, 0.5), 0 0 140px rgba(0, 212, 255, 0.15); }
+        }
+
+        /* Orbit path ring */
+        .hero-graphic::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 380px;
+            height: 380px;
+            margin: -190px 0 0 -190px;
+            border: 1px dashed rgba(0, 212, 255, 0.12);
+            border-radius: 50%;
+            animation: orbit-rotate 40s linear infinite reverse;
+        }
+
+        .hero-node {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            margin: -26px 0 0 -26px;
+            width: 52px;
+            height: 52px;
+            background: var(--surface);
+            border: 1px solid rgba(0, 212, 255, 0.25);
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            box-shadow: var(--shadow-md), 0 0 20px rgba(0, 212, 255, 0.08);
+            z-index: 3;
+            animation: orbit-node 35s linear infinite;
+            transition: box-shadow 0.3s ease;
+        }
+
+        .hero-node:hover {
+            box-shadow: var(--shadow-md), 0 0 30px rgba(0, 212, 255, 0.3);
+            border-color: rgba(0, 212, 255, 0.5);
+        }
+
+        .hero-node:nth-child(5) { animation-delay: 0s; }
+        .hero-node:nth-child(6) { animation-delay: -5.83s; }
+        .hero-node:nth-child(7) { animation-delay: -11.67s; }
+        .hero-node:nth-child(8) { animation-delay: -17.5s; }
+        .hero-node:nth-child(9) { animation-delay: -23.33s; }
+        .hero-node:nth-child(10) { animation-delay: -29.17s; }
+
+        @keyframes orbit-node {
+            from { transform: rotate(0deg) translateX(190px) rotate(0deg); }
+            to { transform: rotate(360deg) translateX(190px) rotate(-360deg); }
+        }
+
+        /* Node pulse rings */
+        .hero-node::after {
+            content: '';
+            position: absolute;
+            inset: -5px;
+            border-radius: 18px;
+            border: 1px solid rgba(0, 212, 255, 0);
+            animation: node-ring-pulse 4s ease-in-out infinite;
+        }
+
+        .hero-node:nth-child(5)::after { animation-delay: 0s; }
+        .hero-node:nth-child(6)::after { animation-delay: -0.7s; }
+        .hero-node:nth-child(7)::after { animation-delay: -1.4s; }
+        .hero-node:nth-child(8)::after { animation-delay: -2.1s; }
+        .hero-node:nth-child(9)::after { animation-delay: -2.8s; }
+        .hero-node:nth-child(10)::after { animation-delay: -3.5s; }
+
+        @keyframes node-ring-pulse {
+            0%, 100% { border-color: rgba(0, 212, 255, 0); transform: scale(1); opacity: 1; }
+            50% { border-color: rgba(0, 212, 255, 0.35); transform: scale(1.15); opacity: 0.7; }
+        }
+
+        /* ============================================================
+           SOCIAL PROOF / TICKER
+           ============================================================ */
+        .social-proof {
+            padding: 48px 0;
+            background: var(--primary-dark);
+            border-top: 1px solid var(--border);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .social-proof-text {
+            text-align: center;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 32px;
+        }
+
+        .social-proof-logos {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 60px;
+            flex-wrap: wrap;
+        }
+
+        .social-proof-logo {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: rgba(255, 255, 255, 0.2);
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            transition: color var(--transition);
+        }
+
+        .social-proof-logo:hover {
+            color: rgba(255, 255, 255, 0.4);
+        }
+
+        /* ============================================================
+           FEATURES SECTION
+           ============================================================ */
+        .features {
+            background: var(--primary);
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 28px;
+        }
+
+        .feature-card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+            padding: 40px 32px;
+            transition: all var(--transition);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: var(--gradient-accent);
+            opacity: 0;
+            transition: opacity var(--transition);
+        }
+
+        .feature-card:hover {
+            border-color: rgba(0, 212, 255, 0.15);
+            box-shadow: var(--shadow-glow);
+        }
+
+        .feature-card:hover::before {
+            opacity: 1;
+        }
+
+        .feature-detail {
+            max-height: 0;
+            overflow: hidden;
+            opacity: 0;
+            font-size: 0.85rem;
+            color: var(--accent);
+            line-height: 1.6;
+            margin-top: 0;
+            padding-top: 0;
+            border-top: 1px solid transparent;
+            transition: max-height 0.5s cubic-bezier(0.4, 0, 0.2, 1),
+                        opacity 0.4s ease 0.1s,
+                        margin-top 0.4s ease,
+                        padding-top 0.4s ease,
+                        border-color 0.4s ease;
+        }
+
+        .feature-card:hover .feature-detail {
+            max-height: 150px;
+            opacity: 1;
+            margin-top: 14px;
+            padding-top: 12px;
+            border-top: 1px solid rgba(0, 212, 255, 0.12);
+        }
+
+        .feature-icon {
+            width: 56px;
+            height: 56px;
+            background: var(--accent-glow);
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            margin-bottom: 24px;
+        }
+
+        .feature-card h3 {
+            margin-bottom: 12px;
+        }
+
+        .feature-card p {
+            font-size: 0.95rem;
+            color: var(--text-muted);
+            line-height: 1.7;
+        }
+
+        /* ============================================================
+           HOW IT WORKS
+           ============================================================ */
+        .how-it-works {
+            background: var(--primary-dark);
+        }
+
+        .steps-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 32px;
+            position: relative;
+        }
+
+        .steps-grid::before {
+            content: '';
+            position: absolute;
+            top: 40px;
+            left: 14%;
+            right: 14%;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, rgba(0, 212, 255, 0.3), rgba(0, 212, 255, 0.3), transparent);
+        }
+
+        .step {
+            text-align: center;
+            position: relative;
+        }
+
+        .step-number {
+            width: 80px;
+            height: 80px;
+            background: var(--surface);
+            border: 2px solid rgba(0, 212, 255, 0.2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--accent);
+            margin: 0 auto 24px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .step h3 {
+            margin-bottom: 10px;
+        }
+
+        .step p {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+        }
+
+        /* ============================================================
+           COST COMPARISON
+           ============================================================ */
+        .cost-comparison {
+            background: var(--primary);
+        }
+
+        .comparison-table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0;
+            background: var(--surface);
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            box-shadow: var(--shadow-md);
+        }
+
+        .comparison-table thead th {
+            background: var(--surface-light);
+            padding: 20px 28px;
+            text-align: left;
+            font-size: 0.85rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .comparison-table tbody td {
+            padding: 18px 28px;
+            border-bottom: 1px solid var(--border);
+            font-size: 0.95rem;
+        }
+
+        .comparison-table tbody tr:last-child td {
+            border-bottom: none;
+            font-weight: 700;
+            font-size: 1rem;
+        }
+
+        .comparison-table tbody tr:last-child td:last-child {
+            color: var(--accent);
+        }
+
+        .comparison-table tbody tr:hover {
+            background: rgba(0, 212, 255, 0.03);
+        }
+
+        .saving-badge {
+            display: inline-block;
+            padding: 4px 12px;
+            background: rgba(0, 212, 255, 0.1);
+            color: var(--accent);
+            border-radius: 50px;
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+
+        /* ============================================================
+           PRICING SECTION
+           ============================================================ */
+        .pricing {
+            background: var(--primary-dark);
+        }
+
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 28px;
+            align-items: stretch;
+        }
+
+        .pricing-card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+            padding: 44px 36px;
+            position: relative;
+            transition: all var(--transition);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .pricing-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .pricing-card.featured {
+            border-color: rgba(0, 212, 255, 0.3);
+            box-shadow: var(--shadow-glow);
+            background: linear-gradient(180deg, var(--surface-light) 0%, var(--surface) 100%);
+        }
+
+        .pricing-popular {
+            position: absolute;
+            top: -14px;
+            left: 50%;
+            transform: translateX(-50%);
+            padding: 6px 24px;
+            background: var(--gradient-accent);
+            border-radius: 50px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: #fff;
+            white-space: nowrap;
+        }
+
+        .pricing-name {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--text-heading);
+            margin-bottom: 8px;
+        }
+
+        .pricing-description {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            margin-bottom: 28px;
+        }
+
+        .pricing-price {
+            margin-bottom: 8px;
+        }
+
+        .pricing-amount {
+            font-size: 2.8rem;
+            font-weight: 700;
+            color: var(--text-heading);
+        }
+
+        .pricing-currency {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--text-muted);
+            vertical-align: super;
+        }
+
+        .pricing-period {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+        }
+
+        .pricing-note {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+            margin-bottom: 32px;
+        }
+
+        .pricing-features {
+            list-style: none;
+            margin-bottom: 36px;
+            flex-grow: 1;
+        }
+
+        .pricing-features li {
+            padding: 10px 0;
+            font-size: 0.95rem;
+            color: var(--text);
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+        }
+
+        .pricing-features li::before {
+            content: '';
+            width: 20px;
+            height: 20px;
+            min-width: 20px;
+            background: rgba(0, 212, 255, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: 2px;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='%2300d4ff'%3E%3Cpath d='M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z'/%3E%3C/svg%3E");
+            background-size: 12px;
+            background-repeat: no-repeat;
+            background-position: center;
+        }
+
+        .pricing-card .btn {
+            width: 100%;
+        }
+
+        /* ============================================================
+           TESTIMONIALS
+           ============================================================ */
+        .testimonials {
+            background: var(--primary);
+        }
+
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 28px;
+        }
+
+        .testimonial-card {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+            padding: 36px 32px;
+        }
+
+        .testimonial-stars {
+            color: #fbbf24;
+            font-size: 1.1rem;
+            margin-bottom: 20px;
+            letter-spacing: 2px;
+        }
+
+        .testimonial-text {
+            font-size: 1rem;
+            color: var(--text);
+            line-height: 1.8;
+            margin-bottom: 24px;
+            font-style: italic;
+        }
+
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+        }
+
+        .testimonial-avatar {
+            width: 48px;
+            height: 48px;
+            background: var(--gradient-accent);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.1rem;
+            font-weight: 700;
+            color: #fff;
+        }
+
+        .testimonial-name {
+            font-weight: 600;
+            color: var(--text-heading);
+            font-size: 0.95rem;
+        }
+
+        .testimonial-role {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+
+        /* ============================================================
+           CTA / CONTACT SECTION
+           ============================================================ */
+        .cta {
+            background: var(--primary-dark);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 800px;
+            height: 800px;
+            background: radial-gradient(circle, rgba(0, 212, 255, 0.05) 0%, transparent 60%);
+            pointer-events: none;
+        }
+
+        .cta .container {
+            position: relative;
+            z-index: 2;
+        }
+
+        .cta-wrapper {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: start;
+        }
+
+        .cta-content h2 {
+            margin-bottom: 20px;
+        }
+
+        .cta-content p {
+            color: var(--text-muted);
+            font-size: 1.05rem;
+            margin-bottom: 32px;
+            line-height: 1.8;
+        }
+
+        .cta-benefits {
+            list-style: none;
+        }
+
+        .cta-benefits li {
+            padding: 10px 0;
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            font-size: 1rem;
+            color: var(--text);
+        }
+
+        .cta-benefits li .benefit-icon {
+            width: 32px;
+            height: 32px;
+            min-width: 32px;
+            background: var(--accent-glow);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.9rem;
+        }
+
+        .contact-form {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+            padding: 44px 40px;
+        }
+
+        .contact-form h3 {
+            font-size: 1.4rem;
+            margin-bottom: 8px;
+        }
+
+        .contact-form > p {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            margin-bottom: 32px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--text);
+            margin-bottom: 8px;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 14px 18px;
+            background: var(--primary);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            color: var(--text-heading);
+            font-size: 0.95rem;
+            font-family: inherit;
+            transition: border-color var(--transition), box-shadow var(--transition);
+            outline: none;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            border-color: var(--accent);
+            box-shadow: 0 0 0 3px rgba(0, 212, 255, 0.1);
+        }
+
+        .form-group input::placeholder,
+        .form-group textarea::placeholder {
+            color: var(--text-muted);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        .form-group select {
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%238892a4' d='M6 8L1 3h10z'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 18px center;
+            padding-right: 44px;
+        }
+
+        .form-group select option {
+            background: var(--primary);
+            color: var(--text);
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+        }
+
+        .form-submit {
+            margin-top: 8px;
+        }
+
+        .form-submit .btn {
+            width: 100%;
+        }
+
+        .form-note {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            margin-top: 14px;
+            text-align: center;
+        }
+
+        /* ============================================================
+           FAQ
+           ============================================================ */
+        .faq {
+            background: var(--primary);
+        }
+
+        .faq-grid {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .faq-item {
+            border-bottom: 1px solid var(--border);
+        }
+
+        .faq-question {
+            width: 100%;
+            background: none;
+            border: none;
+            padding: 24px 0;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            cursor: pointer;
+            text-align: left;
+            color: var(--text-heading);
+            font-size: 1.05rem;
+            font-weight: 600;
+            font-family: inherit;
+            transition: color var(--transition);
+        }
+
+        .faq-question:hover {
+            color: var(--accent);
+        }
+
+        .faq-icon {
+            font-size: 1.5rem;
+            color: var(--accent);
+            transition: transform var(--transition);
+            min-width: 24px;
+            text-align: center;
+            line-height: 1;
+        }
+
+        .faq-item.active .faq-icon {
+            transform: rotate(45deg);
+        }
+
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease, padding 0.4s ease;
+        }
+
+        .faq-answer-inner {
+            padding-bottom: 24px;
+            font-size: 0.95rem;
+            color: var(--text-muted);
+            line-height: 1.8;
+        }
+
+        /* ============================================================
+           FOOTER
+           ============================================================ */
+        .footer {
+            background: var(--primary-dark);
+            border-top: 1px solid var(--border);
+            padding: 64px 0 0;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 48px;
+            margin-bottom: 48px;
+        }
+
+        .footer-brand p {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            margin-top: 16px;
+            line-height: 1.7;
+            max-width: 320px;
+        }
+
+        .footer h4 {
+            font-size: 0.9rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            margin-bottom: 20px;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 12px;
+        }
+
+        .footer-links a {
+            color: var(--text);
+            font-size: 0.9rem;
+            transition: color var(--transition);
+            text-decoration: none;
+        }
+
+        .footer-links a:hover {
+            color: var(--accent);
+        }
+
+        .footer-social {
+            display: flex;
+            gap: 12px;
+            margin-top: 20px;
+        }
+
+        .footer-social a {
+            width: 40px;
+            height: 40px;
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-muted);
+            font-size: 1rem;
+            transition: all var(--transition);
+            text-decoration: none;
+        }
+
+        .footer-social a:hover {
+            background: var(--accent-glow);
+            border-color: rgba(0, 212, 255, 0.3);
+            color: var(--accent);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid var(--border);
+            padding: 24px 0;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+
+        .footer-bottom-links {
+            display: flex;
+            gap: 24px;
+        }
+
+        .footer-bottom-links a {
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            text-decoration: none;
+        }
+
+        .footer-bottom-links a:hover {
+            color: var(--accent);
+        }
+
+        /* ============================================================
+           ANIMATIONS
+           ============================================================ */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* ============================================================
+           RESPONSIVE
+           ============================================================ */
+        @media (max-width: 1024px) {
+            .hero .container {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+
+            .hero-content {
+                max-width: 100%;
+            }
+
+            .hero-buttons {
+                justify-content: center;
+            }
+
+            .hero-stats {
+                justify-content: center;
+            }
+
+            .hero-visual {
+                display: none;
+            }
+
+            .features-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .steps-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 40px;
+            }
+
+            .steps-grid::before {
+                display: none;
+            }
+
+            .pricing-grid {
+                grid-template-columns: 1fr;
+                max-width: 480px;
+                margin: 0 auto;
+            }
+
+            .testimonials-grid {
+                grid-template-columns: 1fr;
+                max-width: 560px;
+                margin: 0 auto;
+            }
+
+            .cta-wrapper {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .section {
+                padding: 72px 0;
+            }
+
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: rgba(26, 26, 46, 0.98);
+                backdrop-filter: blur(20px);
+                flex-direction: column;
+                padding: 24px;
+                gap: 20px;
+                border-bottom: 1px solid var(--border);
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .nav-toggle {
+                display: block;
+            }
+
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .steps-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .comparison-table {
+                font-size: 0.85rem;
+            }
+
+            .comparison-table thead th,
+            .comparison-table tbody td {
+                padding: 14px 16px;
+            }
+
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr;
+                gap: 36px;
+            }
+
+            .footer-bottom {
+                flex-direction: column;
+                gap: 16px;
+                text-align: center;
+            }
+
+            .hero-stats {
+                flex-direction: column;
+                gap: 20px;
+                align-items: center;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 0 16px;
+            }
+
+            .contact-form {
+                padding: 32px 24px;
+            }
+
+            .pricing-card {
+                padding: 36px 24px;
+            }
+        }
+
+        /* ============================================================
+           SUCCESS MESSAGE
+           ============================================================ */
+        .form-success {
+            display: none;
+            text-align: center;
+            padding: 40px 20px;
+        }
+
+        .form-success.show {
+            display: block;
+        }
+
+        .form-success-icon {
+            width: 64px;
+            height: 64px;
+            background: var(--accent-glow);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            margin: 0 auto 20px;
+        }
+
+        .form-success h3 {
+            margin-bottom: 10px;
+        }
+
+        .form-success p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ================================================================
+         NAVIGATION
+         ================================================================ -->
+    <nav class="nav" id="nav">
+        <div class="container">
+            <a href="#" class="nav-logo">
+                <div class="nav-logo-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" stroke="white" stroke-width="0.7" opacity="0.2"/><circle cx="12" cy="12" r="6" stroke="white" stroke-width="0.7" opacity="0.35"/><circle cx="12" cy="12" r="3.2" fill="white"/><g><circle cx="12" cy="3" r="2" fill="white"/><circle cx="19.8" cy="16.5" r="2" fill="white"/><circle cx="4.2" cy="16.5" r="2" fill="white"/><animateTransform attributeName="transform" type="rotate" from="0 12 12" to="360 12 12" dur="12s" repeatCount="indefinite"/></g></svg></div>
+                AI Workforce
+            </a>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#features">Features</a></li>
+                <li><a href="#how-it-works">So funktioniert's</a></li>
+                <li><a href="#pricing">Preise</a></li>
+                <li><a href="#faq">FAQ</a></li>
+                <li><a href="#contact" class="btn btn-primary btn-sm">Demo buchen</a></li>
+            </ul>
+            <button class="nav-toggle" id="navToggle" aria-label="Navigation umschalten">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- ================================================================
+         HERO
+         ================================================================ -->
+    <section class="hero" id="hero">
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-badge">
+                    <span class="hero-badge-dot"></span>
+                    Jetzt verfügbar für Schweizer Unternehmen
+                </div>
+                <h1>Ihr digitales Team, das <span class="highlight">nie schläft</span></h1>
+                <p class="hero-description">
+                    Massgeschneiderte AI-Agent-Teams, die Ihre Geschäftsprozesse rund um die Uhr
+                    automatisieren. Von Entwicklung über Marketing bis Buchhaltung &mdash;
+                    deutliche Kosteneinsparung gegenüber traditionellen Teams.
+                </p>
+                <div class="hero-buttons">
+                    <a href="#contact" class="btn btn-primary">Kostenlose Demo vereinbaren &#8594;</a>
+                    <a href="#how-it-works" class="btn btn-secondary">So funktioniert's</a>
+                </div>
+                <div class="hero-stats">
+                    <div class="hero-stat">
+                        <div class="hero-stat-value">ab 89</div>
+                        <div class="hero-stat-label">CHF / Monat</div>
+                    </div>
+                    <div class="hero-stat">
+                        <div class="hero-stat-value">24/7</div>
+                        <div class="hero-stat-label">Verfügbarkeit</div>
+                    </div>
+                    <div class="hero-stat">
+                        <div class="hero-stat-value">&lt; 48h</div>
+                        <div class="hero-stat-label">Einrichtungszeit</div>
+                    </div>
+                </div>
+            </div>
+            <div class="hero-visual">
+                <div class="hero-graphic">
+                    <div class="hero-orb hero-orb-1"></div>
+                    <div class="hero-orb hero-orb-2"></div>
+                    <div class="hero-orb hero-orb-3"></div>
+                    <div class="hero-center-icon"><svg width="56" height="56" viewBox="0 0 32 32" fill="none"><rect x="5" y="5" width="22" height="22" rx="4" stroke="white" stroke-width="1.5" fill="rgba(255,255,255,0.08)"/><rect x="11" y="11" width="10" height="10" rx="2" stroke="white" stroke-width="1.5" fill="rgba(255,255,255,0.12)"/><circle cx="16" cy="16" r="2.5" fill="white"/><line x1="11" y1="2" x2="11" y2="5" stroke="white" stroke-width="1.2"/><line x1="16" y1="1" x2="16" y2="5" stroke="white" stroke-width="1.2"/><line x1="21" y1="2" x2="21" y2="5" stroke="white" stroke-width="1.2"/><line x1="11" y1="27" x2="11" y2="30" stroke="white" stroke-width="1.2"/><line x1="16" y1="27" x2="16" y2="31" stroke="white" stroke-width="1.2"/><line x1="21" y1="27" x2="21" y2="30" stroke="white" stroke-width="1.2"/><line x1="27" y1="11" x2="30" y2="11" stroke="white" stroke-width="1.2"/><line x1="27" y1="16" x2="31" y2="16" stroke="white" stroke-width="1.2"/><line x1="27" y1="21" x2="30" y2="21" stroke="white" stroke-width="1.2"/><line x1="2" y1="11" x2="5" y2="11" stroke="white" stroke-width="1.2"/><line x1="1" y1="16" x2="5" y2="16" stroke="white" stroke-width="1.2"/><line x1="2" y1="21" x2="5" y2="21" stroke="white" stroke-width="1.2"/></svg></div>
+                    <div class="hero-node"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#00d4ff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="12" rx="2" fill="rgba(0,212,255,0.08)"/><line x1="3" y1="20" x2="21" y2="20"/><line x1="8" y1="16" x2="8" y2="20"/><line x1="16" y1="16" x2="16" y2="20"/><circle cx="12" cy="10" r="2" fill="rgba(0,212,255,0.2)" stroke="#00d4ff" stroke-width="1.5"/><line x1="12" y1="8" x2="12" y2="5" stroke-dasharray="1.5 1.5"/><line x1="14" y1="10" x2="17" y2="10" stroke-dasharray="1.5 1.5"/><line x1="10" y1="10" x2="7" y2="10" stroke-dasharray="1.5 1.5"/></svg></div>
+                    <div class="hero-node"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#00d4ff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/><circle cx="9" cy="12" r="1.5" fill="#00d4ff"/><circle cx="15" cy="12" r="1.5" fill="#00d4ff"/></svg></div>
+                    <div class="hero-node"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#00d4ff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z" fill="rgba(0,212,255,0.08)"/><line x1="8" y1="9" x2="16" y2="9"/><line x1="8" y1="13" x2="13" y2="13"/></svg></div>
+                    <div class="hero-node"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#00d4ff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="12" width="4" height="8" rx="1" fill="rgba(0,212,255,0.15)"/><rect x="10" y="6" width="4" height="14" rx="1" fill="rgba(0,212,255,0.2)"/><rect x="17" y="2" width="4" height="18" rx="1" fill="rgba(0,212,255,0.25)"/><line x1="3" y1="22" x2="23" y2="22"/></svg></div>
+                    <div class="hero-node"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#00d4ff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9" fill="rgba(0,212,255,0.06)"/><path d="M15.5 8H10.5a2.5 2.5 0 000 5h3a2.5 2.5 0 010 5H8.5" stroke-width="1.8"/><line x1="12" y1="4" x2="12" y2="7"/><line x1="12" y1="17" x2="12" y2="20"/></svg></div>
+                    <div class="hero-node"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#00d4ff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" fill="rgba(0,212,255,0.1)"/><polyline points="9 12 11 14 15 10" stroke-width="2"/></svg></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ================================================================
+         SOCIAL PROOF
+         ================================================================ -->
+    <section class="social-proof">
+        <div class="container">
+            <p class="social-proof-text">Vertraut von innovativen Unternehmen in der Schweiz</p>
+            <div class="social-proof-logos">
+                <span class="social-proof-logo">TechCorp</span>
+                <span class="social-proof-logo">SwissFinance</span>
+                <span class="social-proof-logo">MediGroup</span>
+                <span class="social-proof-logo">RetailPlus</span>
+                <span class="social-proof-logo">LogiSwiss</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- ================================================================
+         FEATURES
+         ================================================================ -->
+    <section class="section features" id="features">
+        <div class="container">
+            <div class="text-center">
+                <span class="section-label">Warum AI Workforce</span>
+                <h2 class="section-title">Alles, was Ihr Unternehmen braucht</h2>
+                <p class="section-subtitle">
+                    Unsere AI-Agents vereinen modernste KI-Technologie mit branchenspezifischem
+                    Fachwissen. Das Ergebnis: Ihr digitales Team, massgeschneidert für Ihre Anforderungen.
+                </p>
+            </div>
+            <div class="features-grid">
+                <div class="feature-card fade-in">
+                    <div class="feature-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#00d4ff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div>
+                    <h3>24/7 Verfügbarkeit</h3>
+                    <p>
+                        Ihre AI-Agents arbeiten rund um die Uhr &mdash; ohne Pausen, Ferien oder Krankheitstage.
+                        Aufgaben werden sofort bearbeitet, auch nachts und am Wochenende.
+                    </p>
+                    <div class="feature-detail">Automatische Ticket-Bearbeitung, FAQ-Antworten und Eskalations-Management &mdash; auch um 3 Uhr morgens. Durchschnittliche Antwortzeit: unter 30 Sekunden.</div>
+                </div>
+                <div class="feature-card fade-in">
+                    <div class="feature-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#00d4ff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 00-2.91-.09z"/><path d="M12 15l-3-3a22 22 0 012-3.95A12.88 12.88 0 0122 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 01-4 2z"/><path d="M9 12H4s.55-3.03 2-4c1.62-1.08 5 0 5 0"/><path d="M12 15v5s3.03-.55 4-2c1.08-1.62 0-5 0-5"/></svg></div>
+                    <h3>Sofort skalierbar</h3>
+                    <p>
+                        Brauchen Sie mehr Kapazität? Skalieren Sie Ihr AI-Team in Minuten statt Monaten.
+                        Von einem Agent auf hundert &mdash; ohne Recruiting und Onboarding.
+                    </p>
+                    <div class="feature-detail">Starten Sie mit 3 Agents und skalieren Sie auf 50 &mdash; ohne Wartezeit. Ideal für saisonale Spitzen wie Black Friday oder Jahresabschluss.</div>
+                </div>
+                <div class="feature-card fade-in">
+                    <div class="feature-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#00d4ff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/></svg></div>
+                    <h3>Mehrsprachig</h3>
+                    <p>
+                        Ihre Agents kommunizieren fliessend in Deutsch, Französisch, Italienisch,
+                        Englisch und über 50 weiteren Sprachen. Perfekt für den Schweizer Markt.
+                    </p>
+                    <div class="feature-detail">Native Qualität in DE, FR, IT, EN und 50+ Sprachen. Automatische Spracherkennung und kulturell angepasste Kommunikation für jeden Markt.</div>
+                </div>
+                <div class="feature-card fade-in">
+                    <div class="feature-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#00d4ff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg></div>
+                    <h3>Branchenspezifisch</h3>
+                    <p>
+                        Jeder Agent wird auf Ihre Branche trainiert &mdash; ob Finanzwesen, Gesundheit,
+                        Retail oder Technologie. Fachterminologie und Prozesse sind ab Tag eins integriert.
+                    </p>
+                    <div class="feature-detail">Vorkonfigurierte Pakete für Finanz, Gesundheit, Retail, Treuhand und Tech. Individuelle Anpassung an Ihre Prozesse innerhalb von 48 Stunden.</div>
+                </div>
+                <div class="feature-card fade-in">
+                    <div class="feature-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#00d4ff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg></div>
+                    <h3>Schnelle Einrichtung</h3>
+                    <p>
+                        In weniger als 48 Stunden ist Ihr erstes AI-Team einsatzbereit.
+                        Kein monatelanges Setup, keine komplizierte Integration. Einfach starten.
+                    </p>
+                    <div class="feature-detail">Schritt 1: Erstgespräch. Schritt 2: Konfiguration. Schritt 3: Testing. Schritt 4: Go-Live. Komplettes Onboarding in unter einer Woche.</div>
+                </div>
+                <div class="feature-card fade-in">
+                    <div class="feature-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#00d4ff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 000 7h5a3.5 3.5 0 010 7H6"/></svg></div>
+                    <h3>Deutliche Kosteneinsparung</h3>
+                    <p>
+                        Reduzieren Sie Ihre operativen Kosten erheblich. Ein AI-Team
+                        ab CHF 89 pro Monat übernimmt Routineaufgaben rund um die Uhr.
+                    </p>
+                    <div class="feature-detail">Starter ab CHF 89/Mt. statt CHF 5'000+ für einen Teilzeit-Mitarbeiter. Durchschnittlich 70-80% Kostenreduktion bei Routineaufgaben.</div>
+                </div>
+                <div class="feature-card fade-in">
+                    <div class="feature-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#00d4ff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><polyline points="9 12 11 14 15 10"/></svg></div>
+                    <h3>Swiss Data Compliance</h3>
+                    <p>
+                        Vollständig DSGVO- und DSG-konform. Ihre Daten werden nach Schweizer Standards
+                        verarbeitet und geschützt. Optional mit Hosting in der Schweiz.
+                    </p>
+                    <div class="feature-detail">Verarbeitung nach Schweizer DSG und EU-DSGVO. Optionales Hosting in Schweizer Rechenzentren. Regelmässige Sicherheitsaudits und verschlüsselte Datenübertragung.</div>
+                </div>
+                <div class="feature-card fade-in">
+                    <div class="feature-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#00d4ff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg></div>
+                    <h3>Team-Struktur</h3>
+                    <p>
+                        Ihre AI-Agents arbeiten wie ein echtes Team: mit Rollen, Verantwortlichkeiten
+                        und Eskalationsregeln. Ein CEO-Agent koordiniert alle Abteilungen.
+                    </p>
+                    <div class="feature-detail">CEO-Agent orchestriert Support-, Marketing-, Research- und Finance-Agents. Automatische Aufgabenverteilung, Qualitätskontrolle und Eskalation bei komplexen Anfragen.</div>
+                </div>
+                <div class="feature-card fade-in">
+                    <div class="feature-icon"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#00d4ff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 000 1.4l1.6 1.6a1 1 0 001.4 0l3.77-3.77a6 6 0 01-7.94 7.94l-6.91 6.91a2.12 2.12 0 01-3-3l6.91-6.91a6 6 0 017.94-7.94l-3.76 3.76z"/></svg></div>
+                    <h3>Tool-Integration</h3>
+                    <p>
+                        Nahtlose Anbindung an Ihre bestehenden Tools: ERP, CRM, E-Mail,
+                        Buchhaltung, Cloud-Speicher und mehr. API-First-Architektur für maximale Flexibilität.
+                    </p>
+                    <div class="feature-detail">Native Anbindung an Zendesk, Freshdesk, Slack, Teams, Salesforce, HubSpot und 30+ weitere Tools via REST-API. Eigene Integrationen auf Anfrage.</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ================================================================
+         HOW IT WORKS
+         ================================================================ -->
+    <section class="section how-it-works" id="how-it-works">
+        <div class="container">
+            <div class="text-center">
+                <span class="section-label">In 4 Schritten</span>
+                <h2 class="section-title">So funktioniert AI Workforce</h2>
+                <p class="section-subtitle">
+                    Von der Analyse bis zum produktiven Einsatz &mdash; wir begleiten Sie bei jedem Schritt.
+                </p>
+            </div>
+            <div class="steps-grid">
+                <div class="step fade-in">
+                    <div class="step-number">1</div>
+                    <h3>Analyse</h3>
+                    <p>Wir analysieren Ihre Geschäftsprozesse und identifizieren Automatisierungspotenziale mit dem grössten ROI.</p>
+                </div>
+                <div class="step fade-in">
+                    <div class="step-number">2</div>
+                    <h3>Konfiguration</h3>
+                    <p>Wir erstellen massgeschneiderte AI-Agents mit den richtigen Rollen, Skills und Branchenwissen für Ihr Team.</p>
+                </div>
+                <div class="step fade-in">
+                    <div class="step-number">3</div>
+                    <h3>Integration</h3>
+                    <p>Ihre AI-Agents werden nahtlos in Ihre bestehende IT-Infrastruktur und Arbeitsabläufe integriert.</p>
+                </div>
+                <div class="step fade-in">
+                    <div class="step-number">4</div>
+                    <h3>Optimierung</h3>
+                    <p>Kontinuierliches Monitoring und Feintuning sorgen dafür, dass Ihr AI-Team immer besser wird.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ================================================================
+         COST COMPARISON
+         ================================================================ -->
+    <section class="section cost-comparison" id="costs">
+        <div class="container">
+            <div class="text-center">
+                <span class="section-label">Kostenvergleich</span>
+                <h2 class="section-title">Traditionelles Team vs. AI Workforce</h2>
+                <p class="section-subtitle">
+                    AI Agents übernehmen Routineaufgaben und entlasten Ihr Team &mdash;
+                    rund um die Uhr, ohne Ferien, ohne Krankheitstage.
+                </p>
+            </div>
+            <div class="fade-in">
+                <table class="comparison-table">
+                    <thead>
+                        <tr>
+                            <th>Aufgabenbereich</th>
+                            <th>Traditionell</th>
+                            <th>Mit AI Workforce</th>
+                            <th>Vorteil</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Kundenanfragen beantworten</td>
+                            <td>Teilzeit-MA, CHF 2'500/Mt.</td>
+                            <td>Ab CHF 89/Mt. (Starter)</td>
+                            <td><span class="saving-badge">24/7</span></td>
+                        </tr>
+                        <tr>
+                            <td>Content &amp; Social Media</td>
+                            <td>Agentur, CHF 3'000-5'000/Mt.</td>
+                            <td>Ab CHF 89/Mt. (Starter)</td>
+                            <td><span class="saving-badge">Skalierbar</span></td>
+                        </tr>
+                        <tr>
+                            <td>Datenanalyse &amp; Reports</td>
+                            <td>Stundenweise, CHF 150/h</td>
+                            <td>Ab CHF 349/Mt. (Professional)</td>
+                            <td><span class="saving-badge">Sofort</span></td>
+                        </tr>
+                        <tr>
+                            <td>Komplettes Team (5+ Aufgaben)</td>
+                            <td>2-3 Teilzeit-MA, CHF 8'000+/Mt.</td>
+                            <td>CHF 349/Mt. (Professional)</td>
+                            <td><span class="saving-badge">Planbar</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </section>
+
+    <!-- ================================================================
+         PRICING
+         ================================================================ -->
+    <section class="section pricing" id="pricing">
+        <div class="container">
+            <div class="text-center">
+                <span class="section-label">Preise</span>
+                <h2 class="section-title">Transparente Preise, maximaler Wert</h2>
+                <p class="section-subtitle">
+                    Wählen Sie das Paket, das zu Ihrem Unternehmen passt.
+                    Alle Pakete beinhalten Setup, Support und laufende Optimierung.
+                </p>
+            </div>
+            <div class="pricing-grid">
+                <!-- Starter -->
+                <div class="pricing-card fade-in">
+                    <div class="pricing-name">Starter</div>
+                    <div class="pricing-description">Für Freelancer und kleine Unternehmen &mdash; der einfache Einstieg in AI-Automatisierung.</div>
+                    <div class="pricing-price">
+                        <span class="pricing-currency">CHF </span>
+                        <span class="pricing-amount">89</span>
+                        <span class="pricing-period"> / Monat</span>
+                    </div>
+                    <p class="pricing-note">Jahresabo: CHF 75/Mt.</p>
+                    <ul class="pricing-features">
+                        <li>500 Standard-Läufe / Monat</li>
+                        <li>50 erweiterte Läufe / Monat</li>
+                        <li>5 Strategie-Läufe / Monat</li>
+                        <li>Dashboard mit Echtzeit-Monitoring</li>
+                        <li>E-Mail Support (Mo &ndash; Fr)</li>
+                        <li>DSGVO &amp; DSG-konform</li>
+                    </ul>
+                    <a href="#contact" class="btn btn-secondary">Jetzt starten</a>
+                </div>
+
+                <!-- Professional -->
+                <div class="pricing-card featured fade-in">
+                    <div class="pricing-popular">Am beliebtesten</div>
+                    <div class="pricing-name">Professional</div>
+                    <div class="pricing-description">Fürwachsende KMUs, die mehrere Bereiche automatisieren möchten.</div>
+                    <div class="pricing-price">
+                        <span class="pricing-currency">CHF </span>
+                        <span class="pricing-amount">349</span>
+                        <span class="pricing-period"> / Monat</span>
+                    </div>
+                    <p class="pricing-note">Jahresabo: CHF 297/Mt.</p>
+                    <ul class="pricing-features">
+                        <li>2'000 Standard-Läufe / Monat</li>
+                        <li>300 erweiterte Läufe / Monat</li>
+                        <li>30 Strategie-Läufe / Monat</li>
+                        <li>CEO-Agent fürTeam-Koordination</li>
+                        <li>Erweiterte Integrationen (CRM, API)</li>
+                        <li>Prioritäts-Support (Mo &ndash; Sa)</li>
+                        <li>SLA 99.0% Uptime</li>
+                        <li>Eskalation an menschliche Mitarbeitende</li>
+                    </ul>
+                    <a href="#contact" class="btn btn-primary">Demo vereinbaren</a>
+                </div>
+
+                <!-- Enterprise -->
+                <div class="pricing-card fade-in">
+                    <div class="pricing-name">Enterprise</div>
+                    <div class="pricing-description">Für grössere Unternehmen mit individuellen Anforderungen und hohem Volumen.</div>
+                    <div class="pricing-price">
+                        <span class="pricing-currency">CHF </span>
+                        <span class="pricing-amount">1'199</span>
+                        <span class="pricing-period"> / Monat</span>
+                    </div>
+                    <p class="pricing-note">Jahresabo: CHF 1'019/Mt.</p>
+                    <ul class="pricing-features">
+                        <li>10'000 Standard-Läufe / Monat</li>
+                        <li>1'500 erweiterte Läufe / Monat</li>
+                        <li>150 Strategie-Läufe / Monat</li>
+                        <li>Dedizierter Account Manager</li>
+                        <li>Custom Agents &amp; Integrationen</li>
+                        <li>24/7 Premium-Support</li>
+                        <li>SLA 99.5% Uptime, SSO</li>
+                        <li>Swiss-Cloud Hosting Option</li>
+                    </ul>
+                    <a href="#contact" class="btn btn-secondary">Kontakt aufnehmen</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ================================================================
+         TESTIMONIALS
+         ================================================================ -->
+    <section class="section testimonials" id="testimonials">
+        <div class="container">
+            <div class="text-center">
+                <span class="section-label">Pilotprogramm</span>
+                <h2 class="section-title">Werden Sie einer unserer ersten Kunden</h2>
+                <p class="section-subtitle">
+                    Wir suchen 3&ndash;5 Schweizer KMUs für unser Pilotprogramm.
+                    Testen Sie AI Workforce 4 Wochen kostenlos und gestalten Sie das Produkt aktiv mit.
+                </p>
+            </div>
+            <div class="testimonials-grid">
+                <div class="testimonial-card fade-in">
+                    <div class="testimonial-stars" style="color: var(--accent);">&#10003;</div>
+                    <p class="testimonial-text">
+                        4 Wochen kostenloser Zugang zu einem vollständigen AI-Agent-Team.
+                        Keine Verpflichtung, keine Kreditkarte nötig.
+                    </p>
+                    <div class="testimonial-author">
+                        <div class="testimonial-avatar" style="background: var(--accent);">1</div>
+                        <div>
+                            <div class="testimonial-name">Kostenlose Pilotphase</div>
+                            <div class="testimonial-role">4 Wochen unverbindlich testen</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card fade-in">
+                    <div class="testimonial-stars" style="color: var(--accent);">&#10003;</div>
+                    <p class="testimonial-text">
+                        Persönliche Betreuung und wöchentliches Feedback-Gespräch.
+                        Ihre Anforderungen fliessen direkt in die Produktentwicklung ein.
+                    </p>
+                    <div class="testimonial-author">
+                        <div class="testimonial-avatar" style="background: var(--accent);">2</div>
+                        <div>
+                            <div class="testimonial-name">Persönliche Betreuung</div>
+                            <div class="testimonial-role">Direkter Draht zum Entwicklerteam</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card fade-in">
+                    <div class="testimonial-stars" style="color: var(--accent);">&#10003;</div>
+                    <p class="testimonial-text">
+                        Als Pilotkunde erhalten Sie dauerhaft 30% Rabatt auf alle Pakete
+                        und priorisierte Umsetzung Ihrer Feature-Wünsche.
+                    </p>
+                    <div class="testimonial-author">
+                        <div class="testimonial-avatar" style="background: var(--accent);">3</div>
+                        <div>
+                            <div class="testimonial-name">Exklusive Vorteile</div>
+                            <div class="testimonial-role">30% Pilotrabatt dauerhaft</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ================================================================
+         FAQ
+         ================================================================ -->
+    <section class="section faq" id="faq">
+        <div class="container">
+            <div class="text-center">
+                <span class="section-label">Häufige Fragen</span>
+                <h2 class="section-title">Alles, was Sie wissen müssen</h2>
+                <p class="section-subtitle">
+                    Noch Fragen? Hier finden Sie Antworten auf die häufigsten Fragen zu AI Workforce.
+                </p>
+            </div>
+            <div class="faq-grid">
+                <div class="faq-item">
+                    <button class="faq-question" aria-expanded="false">
+                        <span>Was genau ist ein AI-Agent?</span>
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <div class="faq-answer-inner">
+                            Ein AI-Agent ist eine spezialisierte künstliche Intelligenz, die eine bestimmte Rolle
+                            in Ihrem Unternehmen übernimmt &mdash; z.B. als Content Writer, Buchhalter oder
+                            Support-Mitarbeiter. Jeder Agent hat eigene Fähigkeiten, Verantwortlichkeiten und
+                            kann eigenständig Entscheidungen treffen. Bei komplexen Situationen eskaliert er
+                            automatisch an einen menschlichen Mitarbeitenden.
+                        </div>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question" aria-expanded="false">
+                        <span>Wie sicher sind meine Unternehmensdaten?</span>
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <div class="faq-answer-inner">
+                            Datenschutz hat höchste Priorität. Alle Daten werden nach Schweizer Datenschutzgesetz (DSG)
+                            und europäischer DSGVO verarbeitet. Für Enterprise-Kunden bieten wir Swiss-Cloud-Hosting
+                            und On-Premise-Lösungen an. Verschlüsselung, Zugriffskontrollen und regelmässige
+                            Sicherheitsaudits sind Standard.
+                        </div>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question" aria-expanded="false">
+                        <span>Wie schnell kann ich starten?</span>
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <div class="faq-answer-inner">
+                            Ihr erstes AI-Team kann innerhalb von 48 Stunden einsatzbereit sein. Nach einem
+                            kurzen Analysegespräch konfigurieren wir Ihre Agents, integrieren sie in Ihre
+                            bestehenden Systeme und führen einen Testlauf durch. Komplexere Enterprise-Setups
+                            benötigen typischerweise 1&ndash;2 Wochen.
+                        </div>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question" aria-expanded="false">
+                        <span>Ersetzen AI-Agents meine Mitarbeitenden?</span>
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <div class="faq-answer-inner">
+                            AI-Agents sind darauf ausgelegt, Ihre bestehenden Teams zu ergänzen, nicht zu ersetzen.
+                            Sie übernehmen repetitive, zeitaufwendige Aufgaben und geben Ihren Mitarbeitenden
+                            mehr Raum für strategische, kreative und zwischenmenschliche Arbeit. Die Kombination
+                            aus menschlicher Expertise und AI-Effizienz schafft den grössten Mehrwert.
+                        </div>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question" aria-expanded="false">
+                        <span>Kann ich die AI-Agents an meine Branche anpassen?</span>
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <div class="faq-answer-inner">
+                            Absolut. Jeder AI-Agent wird individuell auf Ihre Branche, Ihre Terminologie und
+                            Ihre Prozesse konfiguriert. Ob Finanzwesen, Gesundheitswesen, E-Commerce, Produktion
+                            oder Dienstleistung &mdash; unsere Agents lernen Ihre spezifischen Anforderungen und
+                            arbeiten entsprechend. Regelmässiges Feintuning sorgt für kontinuierliche Verbesserung.
+                        </div>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question" aria-expanded="false">
+                        <span>Was passiert, wenn ein Agent einen Fehler macht?</span>
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <div class="faq-answer-inner">
+                            Jeder Agent hat definierte Eskalationsregeln. Wenn er sich unsicher ist oder auf
+                            eine Situation trifft, die ausserhalb seines Kompetenzbereichs liegt, eskaliert er
+                            automatisch an einen menschlichen Mitarbeitenden oder einen übergeordneten Agent.
+                            Zusätzlich protokollieren wir alle Aktionen für volle Transparenz und Nachvollziehbarkeit.
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ================================================================
+         CTA / CONTACT
+         ================================================================ -->
+    <section class="section cta" id="contact">
+        <div class="container">
+            <div class="cta-wrapper">
+                <div class="cta-content">
+                    <span class="section-label">Jetzt starten</span>
+                    <h2>Bereit, Ihr AI-Team aufzubauen?</h2>
+                    <p>
+                        Vereinbaren Sie eine kostenlose Demo und erfahren Sie, wie AI Workforce
+                        Ihre Geschäftsprozesse transformieren kann. Unverbindlich und ohne versteckte Kosten.
+                    </p>
+                    <ul class="cta-benefits">
+                        <li>
+                            <span class="benefit-icon">&#10003;</span>
+                            30-minütige, persönliche Live-Demo
+                        </li>
+                        <li>
+                            <span class="benefit-icon">&#10003;</span>
+                            Individuelle Potenzialanalyse für Ihr Unternehmen
+                        </li>
+                        <li>
+                            <span class="benefit-icon">&#10003;</span>
+                            Konkreter ROI-Rechner für Ihre Branche
+                        </li>
+                        <li>
+                            <span class="benefit-icon">&#10003;</span>
+                            Unverbindlich und komplett kostenlos
+                        </li>
+                        <li>
+                            <span class="benefit-icon">&#10003;</span>
+                            Antwort innerhalb von 24 Stunden
+                        </li>
+                    </ul>
+                </div>
+                <div class="contact-form" id="contactForm">
+                    <h3>Demo vereinbaren</h3>
+                    <p>Füllen Sie das Formular aus und wir melden uns innerhalb von 24 Stunden.</p>
+                    <form id="demoForm" novalidate>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="firstName">Vorname *</label>
+                                <input type="text" id="firstName" name="firstName" placeholder="Max" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="lastName">Nachname *</label>
+                                <input type="text" id="lastName" name="lastName" placeholder="Muster" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Geschäftliche E-Mail *</label>
+                            <input type="email" id="email" name="email" placeholder="max.muster@firma.ch" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="company">Unternehmen *</label>
+                            <input type="text" id="company" name="company" placeholder="Muster AG" required>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="employees">Unternehmensgrösse</label>
+                                <select id="employees" name="employees">
+                                    <option value="">Bitte wählen</option>
+                                    <option value="1-10">1 &ndash; 10 Mitarbeitende</option>
+                                    <option value="11-50">11 &ndash; 50 Mitarbeitende</option>
+                                    <option value="51-200">51 &ndash; 200 Mitarbeitende</option>
+                                    <option value="201-500">201 &ndash; 500 Mitarbeitende</option>
+                                    <option value="500+">500+ Mitarbeitende</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="interest">Interesse</label>
+                                <select id="interest" name="interest">
+                                    <option value="">Bitte wählen</option>
+                                    <option value="starter">Starter Paket</option>
+                                    <option value="professional">Professional Paket</option>
+                                    <option value="enterprise">Enterprise Lösung</option>
+                                    <option value="info">Allgemeine Information</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Nachricht (optional)</label>
+                            <textarea id="message" name="message" placeholder="Erzählen Sie uns kurz, welche Prozesse Sie automatisieren möchten..."></textarea>
+                        </div>
+                        <div class="form-submit">
+                            <button type="submit" class="btn btn-primary">Kostenlose Demo anfragen &#8594;</button>
+                        </div>
+                        <p class="form-note">
+                            Mit dem Absenden stimmen Sie unserer
+                            <a href="#datenschutz">Datenschutzerklärung</a> zu.
+                        </p>
+                    </form>
+                    <div class="form-success" id="formSuccess">
+                        <div class="form-success-icon">&#10003;</div>
+                        <h3>Vielen Dank!</h3>
+                        <p>Ihre Demo-Anfrage wurde erfolgreich gesendet. Wir melden uns innerhalb von 24 Stunden bei Ihnen.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ================================================================
+         FOOTER
+         ================================================================ -->
+    <footer class="footer" id="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <a href="#" class="nav-logo">
+                        <div class="nav-logo-icon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="10" stroke="white" stroke-width="0.7" opacity="0.2"/><circle cx="12" cy="12" r="6" stroke="white" stroke-width="0.7" opacity="0.35"/><circle cx="12" cy="12" r="3.2" fill="white"/><g><circle cx="12" cy="3" r="2" fill="white"/><circle cx="19.8" cy="16.5" r="2" fill="white"/><circle cx="4.2" cy="16.5" r="2" fill="white"/><animateTransform attributeName="transform" type="rotate" from="0 12 12" to="360 12 12" dur="12s" repeatCount="indefinite"/></g></svg></div>
+                        AI Workforce
+                    </a>
+                    <p>
+                        Intelligente AI-Agent-Teams für Schweizer Unternehmen.
+                        Automatisieren Sie Ihre Geschäftsprozesse und gewinnen Sie den
+                        entscheidenden Wettbewerbsvorteil.
+                    </p>
+                    <div class="footer-social">
+                        <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">in</a>
+                        <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" aria-label="X (Twitter)">X</a>
+                        <a href="https://github.com" target="_blank" rel="noopener noreferrer" aria-label="GitHub">GH</a>
+                        <a href="https://youtube.com" target="_blank" rel="noopener noreferrer" aria-label="YouTube">YT</a>
+                    </div>
+                </div>
+                <div>
+                    <h4>Produkt</h4>
+                    <ul class="footer-links">
+                        <li><a href="#features">Features</a></li>
+                        <li><a href="#pricing">Preise</a></li>
+                        <li><a href="#how-it-works">So funktioniert's</a></li>
+                        <li><a href="#faq">FAQ</a></li>
+                        <li><a href="#">API-Dokumentation</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4>Unternehmen</h4>
+                    <ul class="footer-links">
+                        <li><a href="#">Über uns</a></li>
+                        <li><a href="#">Blog</a></li>
+                        <li><a href="#">Karriere</a></li>
+                        <li><a href="#">Partner werden</a></li>
+                        <li><a href="#contact">Kontakt</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4>Ressourcen</h4>
+                    <ul class="footer-links">
+                        <li><a href="#">Fallstudien</a></li>
+                        <li><a href="#">Webinare</a></li>
+                        <li><a href="#">Whitepaper</a></li>
+                        <li><a href="#">Hilfe-Center</a></li>
+                        <li><a href="#">Status-Seite</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <span>&copy; 2026 AI Workforce. Alle Rechte vorbehalten.</span>
+                <div class="footer-bottom-links">
+                    <a href="#" id="datenschutz">Datenschutz</a>
+                    <a href="#">Impressum</a>
+                    <a href="#">AGB</a>
+                    <a href="#">Cookie-Einstellungen</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ================================================================
+         JAVASCRIPT
+         ================================================================ -->
+    <script>
+    (function() {
+        'use strict';
+
+        // --- Navigation scroll effect ---
+        const nav = document.getElementById('nav');
+        let lastScroll = 0;
+
+        function onScroll() {
+            const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+            if (scrollTop > 50) {
+                nav.classList.add('scrolled');
+            } else {
+                nav.classList.remove('scrolled');
+            }
+            lastScroll = scrollTop;
+        }
+
+        window.addEventListener('scroll', onScroll, { passive: true });
+
+        // --- Mobile nav toggle ---
+        const navToggle = document.getElementById('navToggle');
+        const navLinks = document.getElementById('navLinks');
+
+        navToggle.addEventListener('click', function() {
+            navLinks.classList.toggle('active');
+        });
+
+        // Close mobile nav on link click
+        navLinks.querySelectorAll('a').forEach(function(link) {
+            link.addEventListener('click', function() {
+                navLinks.classList.remove('active');
+            });
+        });
+
+        // --- Fade-in on scroll (Intersection Observer) ---
+        var fadeElements = document.querySelectorAll('.fade-in');
+
+        if ('IntersectionObserver' in window) {
+            var observer = new IntersectionObserver(function(entries) {
+                entries.forEach(function(entry) {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, {
+                threshold: 0.1,
+                rootMargin: '0px 0px -40px 0px'
+            });
+
+            fadeElements.forEach(function(el) {
+                observer.observe(el);
+            });
+        } else {
+            // Fallback: show all
+            fadeElements.forEach(function(el) {
+                el.classList.add('visible');
+            });
+        }
+
+        // --- FAQ accordion ---
+        var faqItems = document.querySelectorAll('.faq-item');
+
+        faqItems.forEach(function(item) {
+            var button = item.querySelector('.faq-question');
+            var answer = item.querySelector('.faq-answer');
+            var inner = answer.querySelector('.faq-answer-inner');
+
+            button.addEventListener('click', function() {
+                var isOpen = item.classList.contains('active');
+
+                // Close all
+                faqItems.forEach(function(otherItem) {
+                    otherItem.classList.remove('active');
+                    otherItem.querySelector('.faq-question').setAttribute('aria-expanded', 'false');
+                    otherItem.querySelector('.faq-answer').style.maxHeight = '0';
+                });
+
+                // Open clicked if it was closed
+                if (!isOpen) {
+                    item.classList.add('active');
+                    button.setAttribute('aria-expanded', 'true');
+                    answer.style.maxHeight = inner.scrollHeight + 24 + 'px';
+                }
+            });
+        });
+
+        // --- Form handling ---
+        var form = document.getElementById('demoForm');
+        var formSuccess = document.getElementById('formSuccess');
+
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            // Basic validation
+            var firstName = document.getElementById('firstName').value.trim();
+            var lastName = document.getElementById('lastName').value.trim();
+            var email = document.getElementById('email').value.trim();
+            var company = document.getElementById('company').value.trim();
+
+            if (!firstName || !lastName || !email || !company) {
+                alert('Bitte füllen Sie alle Pflichtfelder aus.');
+                return;
+            }
+
+            // Simple email validation
+            var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(email)) {
+                alert('Bitte geben Sie eine gültige E-Mail-Adresse ein.');
+                return;
+            }
+
+            // Simulate form submission
+            var submitBtn = form.querySelector('button[type="submit"]');
+            submitBtn.textContent = 'Wird gesendet...';
+            submitBtn.disabled = true;
+
+            setTimeout(function() {
+                form.style.display = 'none';
+                formSuccess.classList.add('show');
+            }, 1200);
+        });
+
+        // --- Smooth scroll for anchor links (fallback for older browsers) ---
+        document.querySelectorAll('a[href^="#"]').forEach(function(anchor) {
+            anchor.addEventListener('click', function(e) {
+                var targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+
+                var target = document.querySelector(targetId);
+                if (target) {
+                    e.preventDefault();
+                    var offset = nav.offsetHeight + 20;
+                    var targetPosition = target.getBoundingClientRect().top + window.pageYOffset - offset;
+
+                    window.scrollTo({
+                        top: targetPosition,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+    })();
+    </script>
+
+</body>
+</html>
