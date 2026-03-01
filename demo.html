@@ -1,0 +1,624 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Workforce — Dashboard Demo</title>
+    <style>
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+        :root {
+            --bg-primary: #0f1923;
+            --bg-secondary: #1a2332;
+            --bg-card: #1e2d3d;
+            --bg-input: #253545;
+            --text-primary: #e0e8f0;
+            --text-secondary: #8899aa;
+            --text-muted: #5c6d7e;
+            --border: #2a3a4a;
+            --accent: #3b82f6;
+            --success: #10b981;
+            --danger: #ef4444;
+            --warning: #f59e0b;
+            --opus: #a855f7;
+        }
+        html { font-size: 15px; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: var(--bg-primary); color: var(--text-primary);
+            display: flex; flex-direction: column; min-height: 100vh;
+        }
+
+        /* Demo Banner */
+        .demo-banner {
+            background: linear-gradient(135deg, rgba(59,130,246,0.15), rgba(168,85,247,0.15));
+            border-bottom: 1px solid rgba(59,130,246,0.3);
+            padding: 10px 24px; display: flex; align-items: center; justify-content: space-between;
+            font-size: 0.85rem;
+        }
+        .demo-banner span { color: var(--accent); }
+        .demo-banner a {
+            color: var(--accent); text-decoration: none; font-weight: 600;
+            padding: 6px 16px; border: 1px solid var(--accent); border-radius: 6px;
+        }
+        .demo-banner a:hover { background: rgba(59,130,246,0.15); }
+
+        /* Header */
+        .header {
+            background: var(--bg-secondary); padding: 0 24px; height: 52px;
+            display: flex; align-items: center; justify-content: space-between;
+            border-bottom: 1px solid var(--border);
+        }
+        .header-left { display: flex; align-items: center; gap: 12px; }
+        .header-title { font-size: 1.2rem; font-weight: 700; }
+        .header-subtitle { font-size: 0.8rem; color: var(--text-muted); }
+        .header-right { display: flex; align-items: center; gap: 12px; }
+        .budget-text { font-size: 0.8rem; color: var(--text-secondary); }
+        .budget-bar { width: 80px; height: 8px; background: var(--bg-input); border-radius: 4px; overflow: hidden; }
+        .budget-fill { height: 100%; width: 23%; background: var(--success); border-radius: 4px; transition: width 1s; }
+        .pill {
+            font-size: 0.75rem; padding: 3px 10px; border-radius: 10px; font-weight: 600;
+        }
+        .pill-green { background: rgba(16,185,129,0.15); color: var(--success); }
+        .pill-blue { background: rgba(59,130,246,0.15); color: var(--accent); }
+
+        /* Nav */
+        .nav-tabs {
+            background: var(--bg-secondary); padding: 0 24px;
+            display: flex; gap: 0; border-bottom: 1px solid var(--border);
+        }
+        .nav-tab {
+            padding: 10px 20px; font-size: 0.85rem; color: var(--text-secondary);
+            cursor: pointer; border: none; background: none; border-bottom: 2px solid transparent;
+            transition: all 0.2s;
+        }
+        .nav-tab:hover { color: var(--text-primary); }
+        .nav-tab.active { color: var(--accent); border-bottom-color: var(--accent); }
+
+        /* Main */
+        .main { flex: 1; padding: 24px; overflow-y: auto; }
+        .tab-content { display: none; }
+        .tab-content.active { display: block; }
+
+        /* Org Chart */
+        .org-ceo {
+            max-width: 280px; margin: 0 auto 0; background: var(--bg-card);
+            border: 2px solid var(--opus); border-radius: 12px; padding: 16px 20px;
+            text-align: center;
+        }
+        .org-ceo-name { font-weight: 700; font-size: 1rem; }
+        .org-connector {
+            width: 2px; height: 40px; background: var(--border); margin: 0 auto;
+        }
+        .org-hline {
+            height: 2px; background: var(--border); max-width: 900px; margin: 0 auto;
+        }
+        .org-departments {
+            display: flex; flex-wrap: wrap; gap: 16px; justify-content: center;
+            margin-top: 0; max-width: 1100px; margin-left: auto; margin-right: auto;
+        }
+        .org-dept {
+            background: var(--bg-card); border: 1px solid var(--border); border-radius: 10px;
+            min-width: 200px; max-width: 260px; flex: 1;
+        }
+        .org-dept-vline { width: 2px; height: 20px; background: var(--border); margin: 0 auto; }
+        .org-dept-header {
+            padding: 10px 14px; font-weight: 700; font-size: 0.85rem;
+            border-bottom: 1px solid var(--border); color: var(--text-primary);
+        }
+        .org-agent {
+            padding: 8px 14px; display: flex; align-items: center; gap: 8px;
+            background: var(--bg-input); font-size: 0.8rem;
+        }
+        .org-agent:last-child { border-radius: 0 0 10px 10px; }
+        .org-agent.lead { font-weight: 600; }
+        .org-agent-name { flex: 1; }
+        .badge {
+            font-size: 0.65rem; padding: 2px 7px; border-radius: 8px; font-weight: 600;
+        }
+        .badge-opus { background: rgba(168,85,247,0.2); color: var(--opus); }
+        .badge-sonnet { background: rgba(59,130,246,0.2); color: var(--accent); }
+        .badge-haiku { background: rgba(16,185,129,0.2); color: var(--success); }
+        .status-dot {
+            width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0;
+        }
+        .dot-idle { background: var(--text-muted); }
+        .dot-running { background: var(--accent); animation: pulse 1.5s infinite; }
+        .dot-completed { background: var(--success); }
+        .dot-error { background: var(--danger); }
+        @keyframes pulse { 0%,100% { opacity: 1; } 50% { opacity: 0.3; } }
+
+        /* Stats */
+        .stats-overview {
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 16px; margin-bottom: 24px;
+        }
+        .stat-card {
+            background: var(--bg-card); border: 1px solid var(--border); border-radius: 10px;
+            padding: 20px; text-align: center;
+        }
+        .stat-label { font-size: 0.8rem; color: var(--text-secondary); margin-bottom: 6px; }
+        .stat-value { font-size: 1.8rem; font-weight: 700; }
+        .stat-value.cost { color: var(--warning); }
+        .stat-value.success { color: var(--success); }
+
+        .stats-grid { display: grid; grid-template-columns: 1fr 2fr; gap: 16px; }
+        .stats-card {
+            background: var(--bg-card); border: 1px solid var(--border); border-radius: 10px;
+            padding: 20px;
+        }
+        .stats-card h3 {
+            font-size: 0.9rem; color: var(--text-secondary); margin-bottom: 16px;
+            font-weight: 600;
+        }
+
+        /* Bar chart */
+        .bar-row { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; }
+        .bar-label { width: 85px; font-size: 0.78rem; color: var(--text-secondary); text-align: right; }
+        .bar-track { flex: 1; height: 22px; background: var(--bg-input); border-radius: 4px; overflow: hidden; position: relative; }
+        .bar-fill {
+            height: 100%; border-radius: 4px; display: flex; align-items: center;
+            padding-left: 8px; font-size: 0.7rem; font-weight: 600; color: white;
+            transition: width 1.5s ease;
+        }
+        .bar-count { font-size: 0.75rem; color: var(--text-muted); width: 35px; text-align: right; }
+
+        /* History table */
+        .history-table { width: 100%; border-collapse: collapse; }
+        .history-table th {
+            text-align: left; padding: 8px 10px; color: var(--text-secondary);
+            font-size: 0.75rem; font-weight: 600; text-transform: uppercase;
+            letter-spacing: 0.05em; border-bottom: 1px solid var(--border);
+        }
+        .history-table td {
+            padding: 8px 10px; font-size: 0.8rem; border-bottom: 1px solid rgba(42,58,74,0.5);
+        }
+        .history-table tr:hover td { background: var(--bg-input); }
+        .status-tag {
+            font-size: 0.7rem; padding: 2px 8px; border-radius: 8px; font-weight: 600;
+        }
+        .tag-completed { background: rgba(16,185,129,0.15); color: var(--success); }
+        .tag-running { background: rgba(59,130,246,0.15); color: var(--accent); }
+        .tag-error { background: rgba(239,68,68,0.15); color: var(--danger); }
+
+        /* Console */
+        .console-toolbar {
+            display: flex; gap: 10px; margin-bottom: 12px; align-items: center;
+        }
+        .console-select {
+            background: var(--bg-input); color: var(--text-primary); border: 1px solid var(--border);
+            padding: 6px 12px; border-radius: 6px; font-size: 0.8rem;
+        }
+        .console-log {
+            background: var(--bg-card); border: 1px solid var(--border); border-radius: 8px;
+            padding: 16px; font-family: 'Cascadia Code', 'Fira Code', monospace;
+            font-size: 0.78rem; min-height: 400px; max-height: 65vh; overflow-y: auto;
+        }
+        .log-entry {
+            display: flex; gap: 12px; padding: 4px 0; align-items: baseline;
+        }
+        .log-time { color: var(--text-muted); min-width: 65px; }
+        .log-badge {
+            font-size: 0.68rem; padding: 1px 7px; border-radius: 6px; font-weight: 600;
+            min-width: 65px; text-align: center;
+        }
+        .log-badge.started { background: rgba(59,130,246,0.2); color: var(--accent); }
+        .log-badge.done { background: rgba(16,185,129,0.2); color: var(--success); }
+        .log-badge.tool { background: rgba(245,158,11,0.2); color: var(--warning); }
+        .log-badge.error { background: rgba(239,68,68,0.2); color: var(--danger); }
+        .log-badge.pipeline { background: rgba(168,85,247,0.2); color: var(--opus); }
+        .log-msg { flex: 1; color: var(--text-primary); }
+        .log-cost { color: var(--warning); min-width: 55px; text-align: right; }
+
+        /* Control */
+        .control-panel { max-width: 700px; }
+        .mode-switch {
+            display: flex; margin-bottom: 20px;
+        }
+        .mode-btn {
+            padding: 8px 18px; font-size: 0.82rem; border: 1px solid var(--border);
+            background: var(--bg-card); color: var(--text-secondary); cursor: pointer;
+        }
+        .mode-btn:first-child { border-radius: 8px 0 0 8px; }
+        .mode-btn:last-child { border-radius: 0 8px 8px 0; }
+        .mode-btn.active { background: var(--accent); color: white; border-color: var(--accent); }
+        .form-group { margin-bottom: 16px; }
+        .form-label { display: block; font-size: 0.82rem; color: var(--text-secondary); margin-bottom: 6px; }
+        .form-select, .form-textarea {
+            width: 100%; background: var(--bg-input); color: var(--text-primary);
+            border: 1px solid var(--border); border-radius: 8px; padding: 10px 14px;
+            font-size: 0.85rem; font-family: inherit;
+        }
+        .form-textarea { resize: vertical; min-height: 100px; }
+        .btn-primary {
+            background: var(--accent); color: white; border: none; padding: 10px 24px;
+            border-radius: 8px; font-size: 0.85rem; font-weight: 600; cursor: pointer;
+        }
+        .btn-primary:hover { background: #2563eb; }
+        .output-panel {
+            background: var(--bg-card); border: 1px solid var(--border); border-radius: 8px;
+            margin-top: 20px; overflow: hidden;
+        }
+        .output-header {
+            padding: 10px 16px; display: flex; justify-content: space-between;
+            align-items: center; border-bottom: 1px solid var(--border);
+            font-size: 0.85rem; font-weight: 600;
+        }
+        .output-body {
+            padding: 16px; font-family: 'Cascadia Code', 'Fira Code', monospace;
+            font-size: 0.78rem; min-height: 200px; white-space: pre-wrap; line-height: 1.6;
+        }
+        .out-green { color: var(--success); }
+        .out-amber { color: var(--warning); }
+        .out-blue { color: var(--accent); }
+
+        /* Footer */
+        .footer-strip {
+            background: var(--bg-secondary); border-top: 1px solid var(--border);
+            padding: 6px 24px; font-family: 'Cascadia Code', monospace;
+            font-size: 0.7rem; color: var(--text-muted);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .stats-grid { grid-template-columns: 1fr; }
+            .org-departments { flex-direction: column; align-items: center; }
+            .demo-banner { flex-direction: column; gap: 8px; text-align: center; }
+        }
+
+        /* Animations for demo */
+        .animate-in { animation: fadeSlide 0.5s ease forwards; opacity: 0; }
+        @keyframes fadeSlide { to { opacity: 1; transform: translateY(0); } from { transform: translateY(10px); } }
+    </style>
+</head>
+<body>
+
+    <div class="demo-banner">
+        <span>Dies ist eine interaktive Demo des AI Workforce Dashboards mit Beispieldaten.</span>
+        <a href="index.html">Zurück zur Website</a>
+    </div>
+
+    <div class="header">
+        <div class="header-left">
+            <span class="header-title">AI Workforce</span>
+            <span class="header-subtitle">Agent-Team Dashboard</span>
+        </div>
+        <div class="header-right">
+            <span class="budget-text">$2.34 / $10.00</span>
+            <div class="budget-bar"><div class="budget-fill"></div></div>
+            <span class="pill pill-green">Online</span>
+            <span class="pill pill-blue">2 aktiv</span>
+        </div>
+    </div>
+
+    <div class="nav-tabs">
+        <button class="nav-tab active" data-tab="org">Organigramm</button>
+        <button class="nav-tab" data-tab="control">Steuerung</button>
+        <button class="nav-tab" data-tab="console">Konsole</button>
+        <button class="nav-tab" data-tab="stats">Statistiken</button>
+    </div>
+
+    <div class="main">
+
+        <!-- TAB 1: Organigramm -->
+        <div class="tab-content active" id="tab-org">
+            <div class="org-ceo">
+                <div style="display:flex;align-items:center;justify-content:center;gap:10px;">
+                    <span class="org-ceo-name">CEO Orchestrator</span>
+                    <span class="badge badge-opus">Opus</span>
+                    <span class="status-dot dot-completed"></span>
+                </div>
+            </div>
+            <div class="org-connector"></div>
+            <div class="org-hline"></div>
+            <div style="display:flex;justify-content:center;gap:16px;max-width:1100px;margin:0 auto;">
+                <div class="org-dept-vline"></div>
+                <div class="org-dept-vline"></div>
+                <div class="org-dept-vline"></div>
+                <div class="org-dept-vline"></div>
+                <div class="org-dept-vline"></div>
+            </div>
+            <div class="org-departments">
+                <div class="org-dept">
+                    <div class="org-dept-header">Development</div>
+                    <div class="org-agent lead">
+                        <span class="org-agent-name">* Dev Lead</span>
+                        <span class="badge badge-sonnet">Sonnet</span>
+                        <span class="status-dot dot-running"></span>
+                    </div>
+                    <div class="org-agent">
+                        <span class="org-agent-name">Backend Dev</span>
+                        <span class="badge badge-haiku">Haiku</span>
+                        <span class="status-dot dot-completed"></span>
+                    </div>
+                    <div class="org-agent">
+                        <span class="org-agent-name">Frontend Dev</span>
+                        <span class="badge badge-haiku">Haiku</span>
+                        <span class="status-dot dot-idle"></span>
+                    </div>
+                </div>
+                <div class="org-dept">
+                    <div class="org-dept-header">Marketing</div>
+                    <div class="org-agent lead">
+                        <span class="org-agent-name">* Marketing Lead</span>
+                        <span class="badge badge-sonnet">Sonnet</span>
+                        <span class="status-dot dot-completed"></span>
+                    </div>
+                    <div class="org-agent">
+                        <span class="org-agent-name">Content Writer</span>
+                        <span class="badge badge-haiku">Haiku</span>
+                        <span class="status-dot dot-running"></span>
+                    </div>
+                    <div class="org-agent">
+                        <span class="org-agent-name">SEO Analyst</span>
+                        <span class="badge badge-haiku">Haiku</span>
+                        <span class="status-dot dot-idle"></span>
+                    </div>
+                </div>
+                <div class="org-dept">
+                    <div class="org-dept-header">Support</div>
+                    <div class="org-agent lead">
+                        <span class="org-agent-name">* Support Lead</span>
+                        <span class="badge badge-sonnet">Sonnet</span>
+                        <span class="status-dot dot-completed"></span>
+                    </div>
+                    <div class="org-agent">
+                        <span class="org-agent-name">Ticket Agent</span>
+                        <span class="badge badge-haiku">Haiku</span>
+                        <span class="status-dot dot-completed"></span>
+                    </div>
+                    <div class="org-agent">
+                        <span class="org-agent-name">FAQ Agent</span>
+                        <span class="badge badge-haiku">Haiku</span>
+                        <span class="status-dot dot-idle"></span>
+                    </div>
+                </div>
+                <div class="org-dept">
+                    <div class="org-dept-header">Finance</div>
+                    <div class="org-agent lead">
+                        <span class="org-agent-name">* Finance Lead</span>
+                        <span class="badge badge-sonnet">Sonnet</span>
+                        <span class="status-dot dot-idle"></span>
+                    </div>
+                    <div class="org-agent">
+                        <span class="org-agent-name">Buchhalter</span>
+                        <span class="badge badge-haiku">Haiku</span>
+                        <span class="status-dot dot-idle"></span>
+                    </div>
+                </div>
+                <div class="org-dept">
+                    <div class="org-dept-header">Research</div>
+                    <div class="org-agent lead">
+                        <span class="org-agent-name">* Research Lead</span>
+                        <span class="badge badge-sonnet">Sonnet</span>
+                        <span class="status-dot dot-idle"></span>
+                    </div>
+                    <div class="org-agent">
+                        <span class="org-agent-name">Data Analyst</span>
+                        <span class="badge badge-haiku">Haiku</span>
+                        <span class="status-dot dot-idle"></span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- TAB 2: Steuerung -->
+        <div class="tab-content" id="tab-control">
+            <div class="control-panel">
+                <div class="mode-switch">
+                    <button class="mode-btn active">Einzelner Agent</button>
+                    <button class="mode-btn">CEO-Analyse</button>
+                    <button class="mode-btn">Abteilung</button>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Agent-Rolle</label>
+                    <select class="form-select">
+                        <option>Dev Lead [dev]</option>
+                        <option>Backend Dev [dev]</option>
+                        <option>Frontend Dev [dev]</option>
+                        <option>Marketing Lead [marketing]</option>
+                        <option>Content Writer [marketing]</option>
+                        <option>Support Lead [support]</option>
+                        <option>CEO [CEO]</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Aufgabe</label>
+                    <textarea class="form-textarea" placeholder="Beschreibe die Aufgabe...">Erstelle eine REST-API für die Kundenverwaltung mit CRUD-Endpunkten und Validierung.</textarea>
+                </div>
+                <button class="btn-primary" id="demo-run">Agent starten</button>
+                <div class="output-panel">
+                    <div class="output-header">
+                        <span>Ausgabe</span>
+                        <span style="font-size:0.75rem;color:var(--text-muted);font-weight:400;">Dev Lead (Sonnet)</span>
+                    </div>
+                    <div class="output-body" id="demo-output"><span class="out-blue">Agent "dev_lead" gestartet. Warte auf Antwort...</span>
+
+Ich werde eine saubere REST-API für die Kundenverwaltung erstellen.
+
+<span class="out-amber">→ Tool: bash — mkdir -p src/api && touch src/api/customers.py</span>
+
+Erstelle die Endpunkte mit FastAPI:
+- GET /api/customers — Liste aller Kunden
+- POST /api/customers — Neuen Kunden anlegen
+- GET /api/customers/{id} — Einzelnen Kunden abrufen
+- PUT /api/customers/{id} — Kunden aktualisieren
+- DELETE /api/customers/{id} — Kunden löschen
+
+<span class="out-amber">→ Tool: write — src/api/customers.py (47 Zeilen)</span>
+<span class="out-amber">→ Tool: write — src/models/customer.py (23 Zeilen)</span>
+<span class="out-amber">→ Tool: bash — python -m pytest tests/ -v</span>
+
+<span class="out-green">Alle 8 Tests bestanden. API ist einsatzbereit.</span>
+
+<span class="out-green">--- dev_lead abgeschlossen | Kosten: $0.0847 | 12.3s ---</span></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- TAB 3: Konsole -->
+        <div class="tab-content" id="tab-console">
+            <div class="console-toolbar">
+                <select class="console-select">
+                    <option>Alle Abteilungen</option>
+                    <option>Development</option>
+                    <option>Marketing</option>
+                    <option>Support</option>
+                    <option>Finance</option>
+                    <option>Research</option>
+                </select>
+                <select class="console-select">
+                    <option>Alle Events</option>
+                    <option>Gestartet</option>
+                    <option>Abgeschlossen</option>
+                    <option>Fehler</option>
+                    <option>Tool-Nutzung</option>
+                </select>
+            </div>
+            <div class="console-log">
+                <div class="log-entry"><span class="log-time">14:31:02</span><span class="log-badge pipeline">PIPELINE</span><span class="log-msg">CEO-Analyse gestartet: "Erstelle Quartalsbericht Q1 2026"</span><span class="log-cost"></span></div>
+                <div class="log-entry"><span class="log-time">14:31:03</span><span class="log-badge started">GESTARTET</span><span class="log-msg">CEO delegiert an: Development, Finance, Marketing</span><span class="log-cost"></span></div>
+                <div class="log-entry"><span class="log-time">14:31:04</span><span class="log-badge started">GESTARTET</span><span class="log-msg">Finance Lead: Umsatzanalyse Q1 wird erstellt...</span><span class="log-cost"></span></div>
+                <div class="log-entry"><span class="log-time">14:31:04</span><span class="log-badge started">GESTARTET</span><span class="log-msg">Dev Lead: Technische Metriken werden gesammelt...</span><span class="log-cost"></span></div>
+                <div class="log-entry"><span class="log-time">14:31:05</span><span class="log-badge started">GESTARTET</span><span class="log-msg">Marketing Lead: Kampagnen-Performance Q1 wird ausgewertet...</span><span class="log-cost"></span></div>
+                <div class="log-entry"><span class="log-time">14:31:12</span><span class="log-badge tool">TOOL</span><span class="log-msg">finance_lead nutzt bash: python scripts/revenue_report.py</span><span class="log-cost"></span></div>
+                <div class="log-entry"><span class="log-time">14:31:18</span><span class="log-badge tool">TOOL</span><span class="log-msg">dev_lead nutzt bash: git log --since="2026-01-01" --oneline | wc -l</span><span class="log-cost"></span></div>
+                <div class="log-entry"><span class="log-time">14:31:24</span><span class="log-badge done">FERTIG</span><span class="log-msg">marketing_lead abgeschlossen (19.2s) — 3 Kampagnen analysiert</span><span class="log-cost">$0.0923</span></div>
+                <div class="log-entry"><span class="log-time">14:31:31</span><span class="log-badge tool">TOOL</span><span class="log-msg">finance_lead nutzt write: reports/q1_revenue.md</span><span class="log-cost"></span></div>
+                <div class="log-entry"><span class="log-time">14:31:38</span><span class="log-badge done">FERTIG</span><span class="log-msg">finance_lead abgeschlossen (33.7s) — Umsatz: CHF 12'340</span><span class="log-cost">$0.1102</span></div>
+                <div class="log-entry"><span class="log-time">14:31:42</span><span class="log-badge tool">TOOL</span><span class="log-msg">dev_lead nutzt write: reports/q1_tech_metrics.md</span><span class="log-cost"></span></div>
+                <div class="log-entry"><span class="log-time">14:31:48</span><span class="log-badge done">FERTIG</span><span class="log-msg">dev_lead abgeschlossen (43.8s) — 247 Commits, 98.2% Uptime</span><span class="log-cost">$0.0847</span></div>
+                <div class="log-entry"><span class="log-time">14:31:49</span><span class="log-badge started">GESTARTET</span><span class="log-msg">CEO konsolidiert Abteilungsberichte...</span><span class="log-cost"></span></div>
+                <div class="log-entry"><span class="log-time">14:32:15</span><span class="log-badge tool">TOOL</span><span class="log-msg">ceo nutzt write: reports/quartalsbericht_q1_2026.md</span><span class="log-cost"></span></div>
+                <div class="log-entry"><span class="log-time">14:32:28</span><span class="log-badge done">FERTIG</span><span class="log-msg">CEO abgeschlossen (84.2s) — Quartalsbericht erstellt</span><span class="log-cost">$1.2340</span></div>
+                <div class="log-entry"><span class="log-time">14:32:28</span><span class="log-badge pipeline">PIPELINE OK</span><span class="log-msg">CEO-Pipeline abgeschlossen | 5 Agents | Total: $1.5212 | 86s</span><span class="log-cost"></span></div>
+                <div class="log-entry"><span class="log-time">14:45:10</span><span class="log-badge started">GESTARTET</span><span class="log-msg">Content Writer: Blogbeitrag "AI Trends 2026" wird erstellt...</span><span class="log-cost"></span></div>
+                <div class="log-entry"><span class="log-time">14:45:32</span><span class="log-badge tool">TOOL</span><span class="log-msg">content_writer nutzt web_search: "AI Agent trends 2026 enterprise"</span><span class="log-cost"></span></div>
+                <div class="log-entry"><span class="log-time">14:45:51</span><span class="log-badge done">FERTIG</span><span class="log-msg">content_writer abgeschlossen (41.2s) — 1'200 Wörter, SEO-optimiert</span><span class="log-cost">$0.0654</span></div>
+                <div class="log-entry"><span class="log-time">14:52:03</span><span class="log-badge started">GESTARTET</span><span class="log-msg">Ticket Agent: 3 neue Support-Tickets werden bearbeitet...</span><span class="log-cost"></span></div>
+                <div class="log-entry"><span class="log-time">14:52:11</span><span class="log-badge done">FERTIG</span><span class="log-msg">ticket_agent abgeschlossen (8.1s) — 3 Tickets klassifiziert & beantwortet</span><span class="log-cost">$0.0018</span></div>
+            </div>
+        </div>
+
+        <!-- TAB 4: Statistiken -->
+        <div class="tab-content" id="tab-stats">
+            <div class="stats-overview">
+                <div class="stat-card animate-in">
+                    <div class="stat-label">Ausführungen</div>
+                    <div class="stat-value">127</div>
+                </div>
+                <div class="stat-card animate-in" style="animation-delay:0.1s">
+                    <div class="stat-label">Gesamtkosten</div>
+                    <div class="stat-value cost">$3.42</div>
+                </div>
+                <div class="stat-card animate-in" style="animation-delay:0.2s">
+                    <div class="stat-label">Ø Dauer</div>
+                    <div class="stat-value">6.4s</div>
+                </div>
+                <div class="stat-card animate-in" style="animation-delay:0.3s">
+                    <div class="stat-label">Erfolgsrate</div>
+                    <div class="stat-value success">97%</div>
+                </div>
+            </div>
+            <div class="stats-grid">
+                <div class="stats-card">
+                    <h3>Kosten pro Abteilung</h3>
+                    <div class="bar-row">
+                        <span class="bar-label">Development</span>
+                        <div class="bar-track"><div class="bar-fill" style="width:72%;background:var(--accent);">$1.24</div></div>
+                        <span class="bar-count">43x</span>
+                    </div>
+                    <div class="bar-row">
+                        <span class="bar-label">Marketing</span>
+                        <div class="bar-track"><div class="bar-fill" style="width:38%;background:var(--success);">$0.65</div></div>
+                        <span class="bar-count">28x</span>
+                    </div>
+                    <div class="bar-row">
+                        <span class="bar-label">Support</span>
+                        <div class="bar-track"><div class="bar-fill" style="width:22%;background:var(--opus);">$0.38</div></div>
+                        <span class="bar-count">31x</span>
+                    </div>
+                    <div class="bar-row">
+                        <span class="bar-label">Finance</span>
+                        <div class="bar-track"><div class="bar-fill" style="width:45%;background:var(--warning);">$0.78</div></div>
+                        <span class="bar-count">15x</span>
+                    </div>
+                    <div class="bar-row">
+                        <span class="bar-label">Research</span>
+                        <div class="bar-track"><div class="bar-fill" style="width:21%;background:var(--danger);">$0.37</div></div>
+                        <span class="bar-count">10x</span>
+                    </div>
+                </div>
+                <div class="stats-card">
+                    <h3>Letzte Ausführungen</h3>
+                    <table class="history-table">
+                        <thead>
+                            <tr><th>Zeit</th><th>Agent</th><th>Aufgabe</th><th>Status</th><th>Kosten</th><th>Dauer</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr><td style="color:var(--text-muted)">14:52</td><td>Ticket Agent</td><td>3 Support-Tickets bearbeiten</td><td><span class="status-tag tag-completed">completed</span></td><td style="color:var(--warning)">$0.002</td><td>8.1s</td></tr>
+                            <tr><td style="color:var(--text-muted)">14:45</td><td>Content Writer</td><td>Blogbeitrag "AI Trends 2026"</td><td><span class="status-tag tag-completed">completed</span></td><td style="color:var(--warning)">$0.065</td><td>41.2s</td></tr>
+                            <tr><td style="color:var(--text-muted)">14:32</td><td>CEO</td><td>Quartalsbericht Q1 2026 erstellen</td><td><span class="status-tag tag-completed">completed</span></td><td style="color:var(--warning)">$1.234</td><td>84.2s</td></tr>
+                            <tr><td style="color:var(--text-muted)">14:31</td><td>Dev Lead</td><td>Technische Metriken Q1 sammeln</td><td><span class="status-tag tag-completed">completed</span></td><td style="color:var(--warning)">$0.085</td><td>43.8s</td></tr>
+                            <tr><td style="color:var(--text-muted)">14:31</td><td>Finance Lead</td><td>Umsatzanalyse Q1</td><td><span class="status-tag tag-completed">completed</span></td><td style="color:var(--warning)">$0.110</td><td>33.7s</td></tr>
+                            <tr><td style="color:var(--text-muted)">14:31</td><td>Marketing Lead</td><td>Kampagnen-Performance Q1</td><td><span class="status-tag tag-completed">completed</span></td><td style="color:var(--warning)">$0.092</td><td>19.2s</td></tr>
+                            <tr><td style="color:var(--text-muted)">13:15</td><td>Dev Lead</td><td>REST-API Kundenverwaltung</td><td><span class="status-tag tag-completed">completed</span></td><td style="color:var(--warning)">$0.085</td><td>12.3s</td></tr>
+                            <tr><td style="color:var(--text-muted)">12:42</td><td>SEO Analyst</td><td>Keyword-Analyse "AI Schweiz"</td><td><span class="status-tag tag-completed">completed</span></td><td style="color:var(--warning)">$0.043</td><td>15.6s</td></tr>
+                            <tr><td style="color:var(--text-muted)">12:30</td><td>Backend Dev</td><td>Unit Tests für Auth-Modul</td><td><span class="status-tag tag-error">error</span></td><td>—</td><td>—</td></tr>
+                            <tr><td style="color:var(--text-muted)">11:58</td><td>FAQ Agent</td><td>Wissensdatenbank aktualisieren</td><td><span class="status-tag tag-completed">completed</span></td><td style="color:var(--warning)">$0.001</td><td>3.2s</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="footer-strip">
+        14:52:11 FERTIG: ticket_agent abgeschlossen (8.1s) — 3 Tickets klassifiziert & beantwortet | Kosten: $0.0018
+    </div>
+
+    <script>
+    (function() {
+        const tabs = document.querySelectorAll('.nav-tab');
+        const contents = document.querySelectorAll('.tab-content');
+
+        tabs.forEach(tab => {
+            tab.addEventListener('click', () => {
+                tabs.forEach(t => t.classList.remove('active'));
+                contents.forEach(c => c.classList.remove('active'));
+                tab.classList.add('active');
+                document.getElementById('tab-' + tab.dataset.tab).classList.add('active');
+            });
+        });
+
+        // Mode switch in control tab
+        document.querySelectorAll('.mode-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                document.querySelectorAll('.mode-btn').forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+            });
+        });
+
+        // Animate bars on stats tab
+        const observer = new IntersectionObserver(entries => {
+            entries.forEach(e => { if (e.isIntersecting) e.target.style.opacity = '1'; });
+        });
+        document.querySelectorAll('.animate-in').forEach(el => observer.observe(el));
+
+        // Demo run button
+        const runBtn = document.getElementById('demo-run');
+        if (runBtn) {
+            runBtn.addEventListener('click', () => {
+                runBtn.textContent = 'Agent läuft...';
+                runBtn.style.opacity = '0.7';
+                setTimeout(() => {
+                    runBtn.textContent = 'Agent starten';
+                    runBtn.style.opacity = '1';
+                }, 2000);
+            });
+        }
+    })();
+    </script>
+
+</body>
+</html>
